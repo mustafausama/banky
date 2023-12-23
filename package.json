@@ -4,20 +4,23 @@
   "description": "Banking system",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prettier:check": "prettier --check src/**/*.js",
     "prettier:fix": "prettier --write src/**/*.js",
     "lint:check": "eslint src/**/*.js",
     "lint:fix-dry-run": "eslint --fix-dry-run src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js",
-    "format": "npm run prettier:fix && npm run lint:fix"
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "test": "npm run format && npx jasmine"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "prettier": "^3.1.1"
+    "jasmine": "^5.1.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "prettier": "^3.1.1",
+    "supertest": "^6.3.3"
   },
   "dependencies": {
     "express": "^4.18.2",
