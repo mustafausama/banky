@@ -1,16 +1,16 @@
 const app = require('./app');
+const Logger = require('./utils/logger');
 
 const port = process.env.PORT || 3000;
 
 const start = async () => {
     try {
         app.listen(port, () => {
-            // eslint-disable-next-line no-console
-            console.log(`Example app listening at ${port}`);
+            Logger.info(`Server is running on port ${port}`);
         });
     } catch(err) {
         // eslint-disable-next-line no-console
-        console.error(err);
+        Logger.error(err)
         process.exit(1);
     }
 }
