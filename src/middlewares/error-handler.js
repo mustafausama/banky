@@ -8,7 +8,6 @@ module.exports = (err, req, res, _) => {
     return res
       .status(err.statusCode)
       .send({ status: err.statusCode, erros: err.serializeErrors() });
-
   Logger.error(err);
 
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
