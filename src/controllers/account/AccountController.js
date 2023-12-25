@@ -90,6 +90,26 @@ const addBankAccount = (req, res) => {
       res.json(account);
     });
 };
+const showBankAccounts = (req, res) => {
+  client.bankAccount.findMany({
+    where: {
+      SSN: req.user.SSN,
+    },
+  })
+    .then((accounts) => {
+      res.json(accounts);
+    });
+};
+const showUserInfo = (req, res) => {
+  client.user.findUnique({
+    where: {
+      SSN: req.user.SSN,
+    },
+  })
+    .then((user) => {
+      res.json(user);
+    });
+};
 
 module.exports = {
   changeName,
@@ -98,4 +118,6 @@ module.exports = {
   changeAddress,
   changePhone,
   addBankAccount,
+  showBankAccounts,
+  showUserInfo,
 };
