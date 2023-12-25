@@ -1,0 +1,69 @@
+model User {
+  SSN         String        @id @unique
+  firstName   String
+  lastName    String
+  email       String
+  password    String
+  address     String
+  PhoneNumber String
+  BankAccount BankAccount[]
+}
+
+model Bank {
+  swiftcode    String        @id @unique
+  branchName   String
+  accountType  String
+  BankAccount  BankAccount[]
+  Teller       Teller[]
+}
+
+model BankAccount {
+  accountNumber String         @id
+  openingDate   DateTime
+  balance       Float
+  SSN           String
+  swiftcode     String
+  User          User           @relation(fields: [SSN], references: [SSN])
+  Bank          Bank           @relation(fields: [swiftcode], references: [swiftcode])
+  Card          Card[]
+  Loan          Loan[]
+  Transactions  Transactions[]
+}
+
+model Card {
+  cardId       Int        @id @default(autoincrement())
+  cardNumber   String     @unique
+  cvv          String
+  status       String
+  expiryDate   DateTime
+  accountNumber String
+  BankAccount  BankAccount @relation(fields: [accountNumber], references: [accountNumber])
+}
+
+model Loan {
+  loanId       Int        @id @default(autoincrement())
+  amount       Float
+  interestRate Float
+  startDate    DateTime
+  endDate      DateTime
+  accountNumber String
+  BankAccount  BankAccount @relation(fields: [accountNumber], references: [accountNumber])
+}
+
+model Teller {
+  employeeId  Int        @id @default(autoincrement())
+  name        String
+  email       String
+  department  String
+  swiftcode   String
+  Bank        Bank       @relation(fields: [swiftcode], references: [swiftcode])
+}
+
+model Transactions {
+  transactionId Int        @id @default(autoincrement())
+  amount        Float
+  transactionType String
+  date          DateTime
+  accountNumber String
+  BankAccount   BankAccount @relation(fields: [accountNumber], references: [accountNumber])
+}
