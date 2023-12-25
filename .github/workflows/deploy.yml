@@ -33,7 +33,6 @@ jobs:
       run: |
         sed -i 's|__DOMAIN_NAME|${{ secrets.DOMAIN_NAME }}|g' deployment/nginx.conf
         sed -i 's|__SERVER_PORT|${{ secrets.SERVER_PORT }}|g' deployment/nginx.conf
-        sed -i 's|__REACT_PORT|${{ secrets.REACT_PORT }}|g' deployment/nginx.conf
 
     - name: Generate .env files
       run: |
@@ -50,16 +49,14 @@ jobs:
 
     - name: Copy files to DigitalOcean
       run: |
-        rm -rf .git .github .gitignore .env.example .env.production .env.test .env.development .pre-commit node_modules views logs spec .eslintrc.json .eslintignore .prettierrc.json
+        rm -rf .git .github .gitignore .env.example .env.production .env.test .env.development .pre-commit node_modules src/__tests__ views logs spec .eslintrc.json .eslintignore .prettierrc.json
         ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "mkdir -p /app"
         rsync -r --delete-after --quiet $GITHUB_WORKSPACE/ root@${{ secrets.DIGITAL_OCEAN_IP }}:/app
-        # scp -r ./* root@${{ secrets.DIGITAL_OCEAN_IP }}:/app
 
     - name: Run the server
       run: |
         ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm ci"
         ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "if pm2 list | grep -q 'app'; then pm2 restart app; else pm2 start /app/src/index.js --name app; fi"
-        # ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "if pm2 list | grep -q 'react'; then pm2 restart react; else pm2 serve /app/views-build ${{ secrets.REACT_PORT }} --name react; fi"
 
     - name: SSH into the droplet to copy nginx configuration file
       run: |
