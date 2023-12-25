@@ -12,7 +12,8 @@
     "format": "npm run prettier:fix && npm run lint:fix",
     "test": "npm run format && jasmine",
     "dev": "nodemon src/index.js",
-    "postinstall": "[ -f .git/hooks/pre-commit ] || chmod +x .pre-commit && cp .pre-commit .git/hooks/pre-commit"
+    "start": "node src/index.js",
+    "postinstall": "[ -f .git/hooks/pre-commit ] || [ -f .pre-commit ] && chmod +x .pre-commit && cp .pre-commit .git/hooks/pre-commit || exit 0"
   },
   "author": "",
   "license": "ISC",
