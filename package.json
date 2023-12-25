@@ -10,7 +10,8 @@
     "lint:fix-dry-run": "eslint --fix-dry-run \"src/**/*.js\"",
     "lint:fix": "eslint --fix \"src/**/*.js\"",
     "format": "npm run prettier:fix && npm run lint:fix",
-    "test": "npm run format && jasmine"
+    "test": "npm run format && jasmine",
+    "postinstall": "[ -f .git/hooks/pre-commit ] || chmod +x .pre-commit && cp .pre-commit .git/hooks/pre-commit"
   },
   "author": "",
   "license": "ISC",
