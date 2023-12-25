@@ -1,62 +1,14 @@
-#!/bin/bash
+#!/bin/sh
 
-STASH_FLAG=".pre_commit_stashed_changes"
+# Run ESLint in dry-run mode
+echo "Running ESLint..."
+npm run lint:check
 
-echo "Checking if code is formattable..."
-
-npm run lint:fix-dry-run
-
-lint_exit_code=$?
-format_exit_code=1
-
-if [ $lint_exit_code -eq 0 ]; then
-    echo "Stashing unstaged changes..."
-    git stash -q --keep-index
-
-    if [ $? -eq 0 ]; then
-        echo "Some changes were stashed."
-        touch $STASH_FLAG
-    else
-        echo "No changes to stash."
-    fi
-
-    echo "Formatting and linting code..."
-    npm run format
-    format_exit_code=$?
-    if [ $format_exit_code -eq 0 ]; then
-        echo "Done formatting and linting code."
-    else
-        echo "Formatting failed. Please fix formatting issues before committing."
-
-        if [ -f $STASH_FLAG ]; then
-          echo "Unstashing unstaged changes..."
-          git stash pop -q
-          echo "Done unstashing unstaged changes."
-          rm $STASH_FLAG
-        fi
-
-        exit 1
-    fi
-else
-    echo "Linting failed. Please fix linting issues before committing."
-    exit 1
+# If ESLint has errors, abort the commit
+if [ $? -ne 0 ]; then
+  echo "ESLint found issues that need fixing. Please fix them before committing."
+  exit 1
 fi
 
-# Check if there are changes to add before running git add
-if ! git diff --cached --quiet; then
-  echo "Adding formatted files to commit..."
-  git add $(git diff --name-only --cached)
-  echo "Done adding formatted files to commit."
-else
-  echo "No changes to add."
-fi
-
-# Unstash the unstaged changes only if there were stashed changes
-if [ -f $STASH_FLAG ]; then
-  echo "Unstashing unstaged changes..."
-  git stash pop -q
-  echo "Done unstashing unstaged changes."
-  rm $STASH_FLAG
-fi
-
-echo "Done pre-commit hook."
+# If everything is okay, allow the commit
+exit 0

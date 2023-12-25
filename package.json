@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prettier:check": "prettier --check \"src/**/*.js\"",
-    "prettier:fix": "prettier --write \"src/**/*.js\"",
+    "prettier:fix": "prettier --list-different --write \"src/**/*.js\"",
     "lint:check": "eslint \"src/**/*.js\"",
     "lint:fix-dry-run": "eslint --fix-dry-run \"src/**/*.js\"",
     "lint:fix": "eslint --fix \"src/**/*.js\"",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.2",
     "jasmine": "^5.1.0",
     "jasmine-spec-reporter": "^7.0.0",
     "nodemon": "^3.0.2",
