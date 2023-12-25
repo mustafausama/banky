@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  SSN         String        @id
+  firstName   String
+  lastName    String
+  email       String        @unique
+  password    String
+  address     String
+  phoneNumber String
+  bankAccount BankAccount[]
+}
+
+model Bank {
+  swiftcode    String        @id
+  branchName   String
+  accountType  String
+  bankAccounts BankAccount[]
+  tellers      Teller[]
+}
+
+model BankAccount {
+  accountNumber         String         @id
+  openingDate           DateTime
+  balance               Float
+  SSN                   String
+  swiftcode             String
+  user                  User           @relation(fields: [SSN], references: [SSN])
+  bank                  Bank           @relation(fields: [swiftcode], references: [swiftcode])
+  cards                 Card[]
+  loans                 Loan[]
+  receivingTransactions Transactions[] @relation("recipientBankAccount")
+  sendingTransactions   Transactions[] @relation("senderBankAccount")
+}
+
+model Card {
+  cardId        Int         @id @default(autoincrement())
+  cardNumber    String      @unique
+  cvv           String
+  status        String
+  expiryDate    DateTime
+  accountNumber String
+  bankAccount   BankAccount @relation(fields: [accountNumber], references: [accountNumber])
+}
+
+model Loan {
+  loanId        Int         @id @default(autoincrement())
+  amount        Float
+  interestRate  Float
+  startDate     DateTime
+  endDate       DateTime
+  accountNumber String
+  bankAccount   BankAccount @relation(fields: [accountNumber], references: [accountNumber])
+}
+
+model Teller {
+  employeeId Int    @id @default(autoincrement())
+  name       String
+  email      String
+  department String
+  swiftcode  String
+  Bank       Bank   @relation(fields: [swiftcode], references: [swiftcode])
+}
+
+model Transactions {
+  transactionId          Int         @id @default(autoincrement())
+  amount                 Float
+  transactionType        String
+  date                   DateTime
+  senderAccountNumber    String
+  recipientAccountNumber String
+  senderBankAccount      BankAccount @relation("senderBankAccount", fields: [senderAccountNumber], references: [accountNumber])
+  recipientBankAccount   BankAccount @relation("recipientBankAccount", fields: [recipientAccountNumber], references: [accountNumber])
+}

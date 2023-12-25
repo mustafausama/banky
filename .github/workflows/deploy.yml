@@ -37,7 +37,7 @@ jobs:
     - name: Generate .env files
       run: |
         echo "PORT=${{ secrets.SERVER_PORT }}" >> .env
-        echo "POSTGRESQL_DB_URI=${{ secrets.POSTGRESQL_DB_URI }}" >> .env
+        echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
 
     - name: Set up SSH key
       run: |
@@ -57,6 +57,7 @@ jobs:
     - name: Run the server
       run: |
         ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm ci"
+        ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm run prisma:migrate"
         ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "if pm2 list | grep -q 'app'; then pm2 restart app; else pm2 start /app/src/index.js --name app; fi"
 
     - name: SSH into the droplet to copy nginx configuration file
