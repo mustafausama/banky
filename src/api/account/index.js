@@ -5,9 +5,8 @@ const {
   changePassword,
   changeAddress,
   changePhone,
-    addBankAccount,
-    showBankAccounts,
-    showUserInfo,
+  addBankAccount,
+  showUserInfo,
 } = require('../../controllers/account/AccountController');
 const router = Router();
 
@@ -17,7 +16,6 @@ router.post('/password', changePassword);
 router.post('/address', changeAddress);
 router.post('/phone', changePhone);
 router.post('/add-bank-account', addBankAccount);
-router.get('/user-accounts', showBankAccounts);
 router.get('/user-info', showUserInfo);
 
 module.exports = router;

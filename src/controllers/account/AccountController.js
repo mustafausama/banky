@@ -77,35 +77,28 @@ const changePhone = (req, res) => {
 
 const addBankAccount = (req, res) => {
   const currentDateTime = new Date();
-  client.bankAccount.create({
-    data: {
-      accountNumber: req.body.accountNumber,
-      openingDate: currentDateTime,
-      balance: req.body.balance,
-      SSN: req.user.SSN,
-      swiftcode: req.body.swiftcode,
-    },
-  })
+  client.bankAccount
+    .create({
+      data: {
+        accountNumber: req.body.accountNumber,
+        openingDate: currentDateTime,
+        balance: req.body.balance,
+        SSN: req.user.SSN,
+        swiftcode: req.body.swiftcode,
+      },
+    })
     .then((account) => {
       res.json(account);
     });
 };
-const showBankAccounts = (req, res) => {
-  client.bankAccount.findMany({
-    where: {
-      SSN: req.user.SSN,
-    },
-  })
-    .then((accounts) => {
-      res.json(accounts);
-    });
-};
+
 const showUserInfo = (req, res) => {
-  client.user.findUnique({
-    where: {
-      SSN: req.user.SSN,
-    },
-  })
+  client.user
+    .findUnique({
+      where: {
+        SSN: req.user.SSN,
+      },
+    })
     .then((user) => {
       res.json(user);
     });
@@ -118,6 +111,5 @@ module.exports = {
   changeAddress,
   changePhone,
   addBankAccount,
-  showBankAccounts,
   showUserInfo,
 };

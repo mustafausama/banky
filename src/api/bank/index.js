@@ -1,5 +1,9 @@
 const { Router } = require('express');
-const { addBank, addTeller, removeTeller} = require('../../controllers/bank/BankController');
+const {
+  addBank,
+  addTeller,
+  removeTeller,
+} = require('../../controllers/bank/BankController');
 const router = Router();
 
 router.post('/add-bank', addBank);
