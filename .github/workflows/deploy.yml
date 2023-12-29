@@ -10,61 +10,62 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-    - name: Install dependencies
-      run: |
-        npm ci
-        npm install --prefix views
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm run prisma:generate
+          npm install --prefix views
 
-    - name: Run tests
-      run: npm test
+      - name: Run tests
+        run: npm test
 
-    - name: Build views
-      run: BUILD_PATH='../views-build' npm run --prefix ./views build
+      - name: Build views
+        run: BUILD_PATH='../views-build' npm run --prefix ./views build
 
-    - name: Generate nginx configuration file
-      run: |
-        sed -i 's|__DOMAIN_NAME|${{ secrets.DOMAIN_NAME }}|g' deployment/nginx.conf
-        sed -i 's|__SERVER_PORT|${{ secrets.SERVER_PORT }}|g' deployment/nginx.conf
+      - name: Generate nginx configuration file
+        run: |
+          sed -i 's|__DOMAIN_NAME|${{ secrets.DOMAIN_NAME }}|g' deployment/nginx.conf
+          sed -i 's|__SERVER_PORT|${{ secrets.SERVER_PORT }}|g' deployment/nginx.conf
 
-    - name: Generate .env files
-      run: |
-        echo "PORT=${{ secrets.SERVER_PORT }}" >> .env
-        echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+      - name: Generate .env files
+        run: |
+          echo "PORT=${{ secrets.SERVER_PORT }}" >> .env
+          echo "PEPPER=${{ secrets.PEPPER }}" >> .env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
 
-    - name: Set up SSH key
-      run: |
-        mkdir -p ~/.ssh/
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan ${{ secrets.DIGITAL_OCEAN_IP }} >> ~/.ssh/known_hosts
-        chmod 644 ~/.ssh/known_hosts
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan ${{ secrets.DIGITAL_OCEAN_IP }} >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
 
+      - name: Copy files to DigitalOcean
+        run: |
+          rm -rf .git .github .gitignore .env.example .env.production .env.test .env.development .pre-commit node_modules src/__tests__ views logs spec .eslintrc.json .eslintignore .prettierrc.json
+          ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "mkdir -p /app"
+          rsync -r --delete-after --quiet $GITHUB_WORKSPACE/ root@${{ secrets.DIGITAL_OCEAN_IP }}:/app
 
-    - name: Copy files to DigitalOcean
-      run: |
-        rm -rf .git .github .gitignore .env.example .env.production .env.test .env.development .pre-commit node_modules src/__tests__ views logs spec .eslintrc.json .eslintignore .prettierrc.json
-        ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "mkdir -p /app"
-        rsync -r --delete-after --quiet $GITHUB_WORKSPACE/ root@${{ secrets.DIGITAL_OCEAN_IP }}:/app
+      - name: Run the server
+        run: |
+          ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm ci"
+          ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm run prisma:migrate"
+          ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "if pm2 list | grep -q 'app'; then pm2 restart app; else pm2 start /app/src/index.js --name app; fi"
 
-    - name: Run the server
-      run: |
-        ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm ci"
-        ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm run prisma:migrate"
-        ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "if pm2 list | grep -q 'app'; then pm2 restart app; else pm2 start /app/src/index.js --name app; fi"
-
-    - name: SSH into the droplet to copy nginx configuration file
-      run: |
-        ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cp /app/deployment/nginx.conf /etc/nginx/sites-available/${{ secrets.DOMAIN_NAME }}"
-        ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "rm -f /etc/nginx/sites-enabled/${{ secrets.DOMAIN_NAME }}"
-        ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "ln -s /etc/nginx/sites-available/${{ secrets.DOMAIN_NAME }} /etc/nginx/sites-enabled/${{ secrets.DOMAIN_NAME }}"
-        ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "nginx -t"
-        ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "systemctl restart nginx"
-
+      - name: SSH into the droplet to copy nginx configuration file
+        run: |
+          ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cp /app/deployment/nginx.conf /etc/nginx/sites-available/${{ secrets.DOMAIN_NAME }}"
+          ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "rm -f /etc/nginx/sites-enabled/${{ secrets.DOMAIN_NAME }}"
+          ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "ln -s /etc/nginx/sites-available/${{ secrets.DOMAIN_NAME }} /etc/nginx/sites-enabled/${{ secrets.DOMAIN_NAME }}"
+          ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "nginx -t"
+          ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "systemctl restart nginx"
