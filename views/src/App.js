@@ -8,6 +8,7 @@ import Landing from './pages/Landing';
 import BankAccount from './pages/BankAccount';
 import CreateTransaction from './pages/CreateTransaction';
 import Register from './pages/Register';
+import Login from './pages/Login';
 
 function App() {
   const { statelessInit } = useAuth();
@@ -26,6 +27,7 @@ function App() {
           <Route path="/account-details/:num" element={<BankAccount />} />
           <Route path="/create-transaction" element={<CreateTransaction />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <ToastContainer />
         <Footer />
