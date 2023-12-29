@@ -1,13 +1,15 @@
 require('express-async-errors');
 const express = require('express');
-
+const cookieParser = require('cookie-parser');
+const expressListEndpoints = require('express-list-endpoints');
 const morganMiddleware = require('./middlewares/morgan');
 const NotFoundError = require('./utils/errors/not-found-error');
 const errorHandler = require('./middlewares/error-handler');
 
 const app = express();
 
-// This is a built-in middleware function in Express.
+app.use(cookieParser());
+
 app.use(express.json());
 
 app.use(morganMiddleware);
@@ -23,5 +25,13 @@ app.all('*', async () => {
 });
 
 app.use(errorHandler);
+
+const routes = expressListEndpoints(app);
+// eslint-disable-next-line no-console
+console.log(
+  routes
+    .map(({ path, methods }) => ({ path, methods }))
+    .filter((route) => route.path !== '*')
+);
 
 module.exports = app;

@@ -3,7 +3,7 @@ const {
   addBank,
   addTeller,
   removeTeller,
-} = require('../../controllers/bank/BankController');
+} = require('../controllers/bank/BankController');
 const router = Router();
 
 router.post('/add-bank', addBank);

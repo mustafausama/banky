@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "BankAccount" ALTER COLUMN "openingDate" SET DEFAULT CURRENT_TIMESTAMP;

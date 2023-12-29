@@ -7,7 +7,7 @@ const {
   changePhone,
   addBankAccount,
   showUserInfo,
-} = require('../../controllers/account/AccountController');
+} = require('../controllers/account/AccountController');
 const router = Router();
 
 router.post('/name', changeName);

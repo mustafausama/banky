@@ -4,11 +4,11 @@ const Logger = require('../utils/logger');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = (err, req, res, _) => {
-  if (err instanceof CustomError)
-    return res
-      .status(err.statusCode)
-      .send({ status: err.statusCode, erros: err.serializeErrors() });
-  Logger.error(err);
+  if (err instanceof CustomError) {
+    return res.status(err.statusCode).send({ errors: err.serializeErrors() });
+  }
+  // eslint-disable-next-line no-console
+  Logger.error(err.message);
 
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
     status: StatusCodes.INTERNAL_SERVER_ERROR,
