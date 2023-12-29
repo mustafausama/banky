@@ -13,3 +13,6 @@ Then, run the following commands
 3. `cp .env.example .env`
 4. `npm run prisma:migrate`
 5. `npm run dev`
+
+To view the database visualization run:  
+`npm run prisma:studio`
