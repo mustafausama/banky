@@ -8,11 +8,10 @@ const {
   registerValidator,
   loginValidator,
 } = require('../middlewares/validators/auth');
-const authMiddleware = require('../middlewares/authMiddleware');
 const router = Router();
 
 router.post('/register', registerValidator, registerController);
 router.post('/login', loginValidator, loginController);
-router.post('/logout', authMiddleware, logoutController);
+router.post('/logout', logoutController);
 
 module.exports = router;

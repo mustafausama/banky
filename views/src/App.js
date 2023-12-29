@@ -1,8 +1,29 @@
+import { useEffect } from 'react';
+import useAuth from './hooks/useAuth';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NavbarComponent from './components/Navbar';
+import { ToastContainer } from 'react-toastify';
+import Footer from './components/Footer';
+import Landing from './pages/Landing';
+
 function App() {
+  const { statelessInit } = useAuth();
+
+  useEffect(() => {
+    statelessInit();
+  }, [statelessInit]);
+
   return (
     <>
-      <p>fdfdf</p>
-      <h2>fdfdfd</h2>
+      {' '}
+      <BrowserRouter>
+        <NavbarComponent />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+        </Routes>
+        <ToastContainer />
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }

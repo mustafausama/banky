@@ -71,7 +71,7 @@ const loginController = async (req, res) => {
   });
 
   // Set an additional cookie flag to indicate the presence of a token
-  res.cookie('isTokenAttached', 'true', {
+  res.cookie('isTokenAttached', user.SSN, {
     secure: process.env.NODE_ENV === 'prod',
     maxAge: 365 * 24 * 60 * 60 * 1000,
     sameSite: 'strict',
