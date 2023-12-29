@@ -5,12 +5,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import useAuth from '../hooks/useAuth';
 import { NavLink } from 'react-router-dom';
 
+
 const NavbarComponent = () => {
   const { user } = useAuth();
   return (
     <Navbar bg="dark" data-bs-theme="dark" collapseOnSelect expand="lg">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="#home">Banky</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
