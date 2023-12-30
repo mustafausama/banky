@@ -5,6 +5,7 @@ import NavbarComponent from './components/Navbar';
 import { ToastContainer } from 'react-toastify';
 import Footer from './components/Footer';
 import Landing from './pages/Landing';
+import Register from './pages/Register';
 
 function App() {
   const { statelessInit } = useAuth();
@@ -20,6 +21,7 @@ function App() {
         <NavbarComponent />
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
         <ToastContainer />
         <Footer />
