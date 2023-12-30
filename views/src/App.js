@@ -9,6 +9,7 @@ import BankAccount from './pages/BankAccount';
 import CreateTransaction from './pages/CreateTransaction';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import NearestAtm from './pages/NearestAtm';
 import 'react-toastify/dist/ReactToastify.css';
 import Review from './pages/Review';
 import Currency from './pages/Currency';
@@ -35,6 +36,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/review" element={<Review />} />
           <Route path="/currency" element={<Currency />} />
+          <Route path="/nearest-atm" element={<NearestAtm />} />
         </Routes>
         <ToastContainer />
         <Footer />
