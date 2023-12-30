@@ -20,6 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          npm install -g npm@6
           npm ci
           npm run prisma:generate
           npm install --prefix views
