@@ -27,14 +27,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Build views
-        run: BUILD_PATH='../views-build' npm run --prefix ./views build
-
-      - name: Generate nginx configuration file
-        run: |
-          sed -i 's|__DOMAIN_NAME|${{ secrets.DOMAIN_NAME }}|g' deployment/nginx.conf
-          sed -i 's|__SERVER_PORT|${{ secrets.SERVER_PORT }}|g' deployment/nginx.conf
-
       - name: Generate .env files
         run: |
           echo "PORT=\"${{ secrets.SERVER_PORT }}\"" >> .env
@@ -42,6 +34,15 @@ jobs:
           echo "JWT_SECRET=\"${{ secrets.JWT_SECRET }}\"" >> .env
           echo "CLIENT_URL=\"${{ secrets.CLIENT_URL }}\"" >> .env
           echo "DATABASE_URL=\"${{ secrets.DATABASE_URL }}\"" >> .env
+          echo "REACT_APP_BASE_URL=\"${{ secrets.REACT_APP_BASE_URL }}\"" >> views/.env
+
+      - name: Build views
+        run: BUILD_PATH='../views-build' npm run --prefix ./views build
+
+      - name: Generate nginx configuration file
+        run: |
+          sed -i 's|__DOMAIN_NAME|${{ secrets.DOMAIN_NAME }}|g' deployment/nginx.conf
+          sed -i 's|__SERVER_PORT|${{ secrets.SERVER_PORT }}|g' deployment/nginx.conf
 
       - name: Set up SSH key
         run: |
