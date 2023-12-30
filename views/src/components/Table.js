@@ -10,11 +10,10 @@ const MyTable = ({data}) => {
       <div className="table-responsive">
         <Table className="table">
           <tbody>
-            {data.map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                {Object.values(row).map((cell, cellIndex) => (
-                  <td key={cellIndex}>{cell}</td>
-                ))}
+            {Object.keys(data).map((key) => (
+              <tr key={key}>
+                <td>{key}</td>
+                <td>{data[key]}</td>
               </tr>
             ))}
           </tbody>
