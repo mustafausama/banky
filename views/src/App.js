@@ -10,6 +10,8 @@ import CreateTransaction from './pages/CreateTransaction';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import 'react-toastify/dist/ReactToastify.css';
+import Review from './pages/Review';
+import Currency from './pages/Currency';
 
 function App() {
   const { statelessInit } = useAuth();
@@ -29,6 +31,8 @@ function App() {
           <Route path="/create-transaction" element={<CreateTransaction />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/review" element={<Review />} />
+          <Route path="/currency" element={<Currency />} />
         </Routes>
         <ToastContainer />
         <Footer />

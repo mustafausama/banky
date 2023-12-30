@@ -10,7 +10,10 @@ module.exports = (err, req, res, _) => {
   Logger.error(err.message);
 
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-    status: StatusCodes.INTERNAL_SERVER_ERROR,
-    message: 'Internal server Error',
+    errors: [
+      {
+        message: 'Internal server Error',
+      },
+    ],
   });
 };

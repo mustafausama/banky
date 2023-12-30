@@ -12,5 +12,6 @@ router.use('/loan', authMiddleware, require('./loan'));
 router.use('/transaction', authMiddleware, require('./transaction'));
 router.use('/review', require('./review'));
 router.use('/atm', require('./atm'));
+router.use('/currency', require('./currency'));
 
 module.exports = router;
