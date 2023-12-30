@@ -2,11 +2,20 @@ require('express-async-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const expressListEndpoints = require('express-list-endpoints');
+const cors = require('cors');
 const morganMiddleware = require('./middlewares/morgan');
 const NotFoundError = require('./utils/errors/not-found-error');
 const errorHandler = require('./middlewares/error-handler');
 
 const app = express();
+
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+};
+
+app.use(cors(corsOptions));
 
 app.use(cookieParser());
 
