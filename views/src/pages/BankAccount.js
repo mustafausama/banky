@@ -21,7 +21,7 @@ const BankAccount = () => {
         setBankAccountDetails(bankAccountDetails);
       })
       .catch((error) => console.error('Error:', error));
-  }, []);
+  }, [bankAccountDetails]);
 
   return (
     <Container>

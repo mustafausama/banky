@@ -2,15 +2,14 @@ import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import banking from '../images/banking2.jpg';
 
-
+// eslint jsx-a11y/anchor-is-valid: 0
 const LandingSection = () => {
   return (
     <section>
       <div
         style={{
           height: '600px',
-          background:
-            `url(${banking}) center / cover no-repeat`,
+          background: `url(${banking}) center / cover no-repeat`,
         }}
       ></div>
       <Container className="h-100 position-relative" style={{ top: '-50px' }}>
@@ -42,7 +41,7 @@ const LandingSection = () => {
                 </p>
               </Card.Body>
               <Card.Footer className="p-4 py-3">
-                <a href="#">
+                <a href="/">
                   Learn more{' '}
                   <svg
                     className="bi bi-arrow-right"
@@ -92,7 +91,7 @@ const LandingSection = () => {
                 </p>
               </Card.Body>
               <Card.Footer className="p-4 py-3">
-                <a href="#">
+                <a href="/">
                   Learn more{' '}
                   <svg
                     className="bi bi-arrow-right"
@@ -138,7 +137,7 @@ const LandingSection = () => {
                 </p>
               </Card.Body>
               <Card.Footer className="p-4 py-3">
-                <a href="#">
+                <a href="/">
                   Learn more{' '}
                   <svg
                     className="bi bi-arrow-right"

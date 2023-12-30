@@ -2,18 +2,16 @@
 import Form from 'react-bootstrap/Form';
 import { Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
-import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 
 const Register = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState(''); // added for password confirmation
+  const [email] = useState('');
+  const [password] = useState('');
+  const [passwordConfirm] = useState(''); // added for password confirmation
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const { signup } = useAuth(); // signup function from AuthContext
+  const [setLoading] = useState(false);
   const history = useNavigate();
 
   const handleSubmit = async (e) => {
