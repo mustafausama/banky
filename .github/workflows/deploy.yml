@@ -37,10 +37,10 @@ jobs:
 
       - name: Generate .env files
         run: |
-          echo "PORT=${{ secrets.SERVER_PORT }}" >> .env
-          echo "PEPPER=${{ secrets.PEPPER }}" >> .env
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "PORT=\"${{ secrets.SERVER_PORT }}\"" >> .env
+          echo "PEPPER=\"${{ secrets.PEPPER }}\"" >> .env
+          echo "JWT_SECRET=\"${{ secrets.JWT_SECRET }}\"" >> .env
+          echo "DATABASE_URL=\"${{ secrets.DATABASE_URL }}\"" >> .env
 
       - name: Set up SSH key
         run: |

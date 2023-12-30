@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
-const { hashPassword, comparePassword } = require('../../utils/hashing');
+const { hashPassword, comparePassword } = require('../utils/hashing');
 const jwt = require('jsonwebtoken');
-const BadRequestError = require('../../utils/errors/bad-request-error');
+const BadRequestError = require('../utils/errors/bad-request-error');
 
 const prisma = new PrismaClient();
 

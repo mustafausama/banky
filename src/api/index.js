@@ -1,15 +1,16 @@
 const { Router } = require('express');
-const auth = require('./auth');
-const account = require('./account');
-const bank = require('./bank');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = Router();
 
-router.use('/auth', auth);
-router.use('/account', authMiddleware, account);
-// bank-account
-
-router.use('/bank', bank);
+router.use('/auth', require('./auth'));
+router.use('/user', authMiddleware, require('./user'));
+router.use('/bank', require('./bank'));
+router.use('/bank-accout', authMiddleware, require('./bank-account'));
+router.use('/card', authMiddleware, require('./card'));
+router.use('/loan', authMiddleware, require('./loan'));
+router.use('/transaction', authMiddleware, require('./transaction'));
+router.use('/review', require('./review'));
+router.use('/atm', require('./atm'));
 
 module.exports = router;

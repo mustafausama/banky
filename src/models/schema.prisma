@@ -11,21 +11,21 @@ datasource db {
 }
 
 model User {
-  SSN          String        @id
-  firstName    String
-  lastName     String
-  email        String        @unique
-  password     String
-  address      String
-  phoneNumber  String
-  bankAccounts BankAccount[]
+  SSN           String         @id
+  firstName     String
+  lastName      String
+  email         String         @unique
+  password      String
+  address       String
+  phoneNumber   String
+  bankAccounts  BankAccount[]
+  notifications Notification[]
 }
 
 model Bank {
   swiftcode    String        @id
   branchName   String
   bankAccounts BankAccount[]
-  tellers      Teller[]
 }
 
 model BankAccount {
@@ -47,7 +47,6 @@ model Card {
   cardId        Int         @id @default(autoincrement())
   cardNumber    String      @unique
   cvv           String
-  status        String
   expiryDate    DateTime
   accountNumber Int
   bankAccount   BankAccount @relation(fields: [accountNumber], references: [accountNumber])
@@ -63,24 +62,44 @@ model Loan {
   bankAccount   BankAccount @relation(fields: [accountNumber], references: [accountNumber])
 }
 
-model Teller {
-  employeeId Int    @id @default(autoincrement())
-  name       String
-  email      String
-  department String
-  swiftcode  String
-  Bank       Bank   @relation(fields: [swiftcode], references: [swiftcode])
-}
-
 model Transactions {
   transactionId          Int         @id @default(autoincrement())
   amount                 Float
-  transactionType        String
-  date                   DateTime
+  date                   DateTime    @default(now())
+  createdAt              DateTime    @default(now())
+  note                   String
   senderAccountNumber    Int
   recipientAccountNumber Int
   senderBankAccount      BankAccount @relation("senderBankAccount", fields: [senderAccountNumber], references: [accountNumber])
   recipientBankAccount   BankAccount @relation("recipientBankAccount", fields: [recipientAccountNumber], references: [accountNumber])
+}
+
+model Notification {
+  notificationId Int      @id @default(autoincrement())
+  message        String
+  date           DateTime @default(now())
+  SSN            String
+  user           User     @relation(fields: [SSN], references: [SSN])
+}
+
+model ATM {
+  atmId     Int    @id @default(autoincrement())
+  latitude  Float
+  longitude Float
+  bankId    String
+}
+
+model Currency {
+  currencyId Int    @id @default(autoincrement())
+  name       String
+  symbol     String
+  exchange   Float
+}
+
+model Review {
+  reviewId Int     @id @default(autoincrement())
+  rating   Int
+  message  String
 }
 
 enum AccountType {

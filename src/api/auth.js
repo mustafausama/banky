@@ -3,7 +3,7 @@ const {
   registerController,
   loginController,
   logoutController,
-} = require('../controllers/auth/AuthController');
+} = require('../controllers/AuthController');
 const {
   registerValidator,
   loginValidator,
