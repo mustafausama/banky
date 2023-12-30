@@ -9,6 +9,7 @@ import BankAccount from './pages/BankAccount';
 import CreateTransaction from './pages/CreateTransaction';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { statelessInit } = useAuth();

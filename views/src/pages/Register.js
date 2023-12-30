@@ -2,45 +2,40 @@
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import { Row, Col } from 'react-bootstrap';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Alert } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import axios from '../utils/api';
+import { toast } from 'react-toastify';
 
 const Register = () => {
-  const [email] = useState('');
-  const [password] = useState('');
-  const [passwordConfirm] = useState(''); // added for password confirmation
-  const [error, setError] = useState('');
-  const [setLoading] = useState(false);
-  const history = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setError,
+    formState: { errors },
+    clearErrors,
+  } = useForm();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // prevent default form submission
-    if (password !== passwordConfirm) {
-      return setError('Passwords do not match');
-    }
-    try {
-      setError('');
-      setLoading(true);
-
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
+  const onSubmit = (data) => {
+    if (Object.keys(errors).length > 0) return;
+    axios
+      .post('/auth/register', data)
+      .then(() => {})
+      .catch((err) => {
+        const { errors } = err.response.data;
+        const { message, fields } = errors[0];
+        if (message) toast.error(message);
+        if (fields) {
+          clearErrors();
+          fields.forEach(({ field, message }) => {
+            if (!errors[field])
+              setError(field, {
+                message,
+              });
+          });
+        }
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to register');
-      }
-
-      history.push('/'); // redirect to home page
-    } catch (err) {
-      setError(err.message);
-    }
-    setLoading(false);
   };
 
   return (
@@ -62,7 +57,6 @@ const Register = () => {
             </p>
           </Col>
         </Row>
-        {error && <Alert variant="danger">{error}</Alert>}
         <Row className="d-flex justify-content-center">
           <Col md={6} xl={4}>
             <Card className="mb-5">
@@ -79,85 +73,189 @@ const Register = () => {
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
                   </svg>
                 </div>
-                <Form onSubmit={handleSubmit}>
+                <Form noValidate onSubmit={handleSubmit(onSubmit)}>
                   <Row>
                     <Col>
-                      <Form.Group id="firstName">
-                        <Form.Label>First Name</Form.Label>
+                      <Form.Group className="mt-4">
+                        <Form.Label htmlFor="firstName">First Name</Form.Label>
                         <Form.Control
+                          id="firstName"
                           type="text"
                           placeholder="Enter first name"
-                          required
+                          name="firstName"
+                          {...register('firstName', {
+                            required: 'First name is required',
+                          })}
+                          isInvalid={!!errors.firstName}
                         />
+                        <Form.Control.Feedback type="invalid">
+                          {errors.firstName && errors.firstName.message}
+                        </Form.Control.Feedback>
                       </Form.Group>
                     </Col>
                     <Col>
-                      <Form.Group id="lastName">
-                        <Form.Label>Last Name</Form.Label>
+                      <Form.Group className="mt-4">
+                        <Form.Label htmlFor="lastName">Last Name</Form.Label>
                         <Form.Control
                           type="text"
+                          id="lastName"
                           placeholder="Enter last name"
-                          required
+                          name="lastName"
+                          {...register('lastName', {
+                            required: 'Last name is required',
+                          })}
+                          isInvalid={!!errors.lastName}
                         />
+                        {errors.lastName && (
+                          <Form.Control.Feedback type="invalid">
+                            {errors.lastName.message}
+                          </Form.Control.Feedback>
+                        )}
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Form.Group id="email">
-                    <Form.Label>Email address</Form.Label>
+
+                  <Form.Group className="mt-4">
+                    <Form.Label htmlFor="email">Email</Form.Label>
                     <Form.Control
+                      id="email"
                       type="email"
                       placeholder="Enter email"
                       required
+                      {...register('email', {
+                        required: 'Email is required',
+                        pattern: {
+                          value: /\S+@\S+\.\S+/,
+                          message: 'Invalid email address',
+                        },
+                      })}
+                      isInvalid={!!errors.email}
                     />
-                    <Form.Text className="text-muted">
-                      We'll never share your email with anyone else.
-                    </Form.Text>
+                    {errors.email && (
+                      <Form.Control.Feedback type="invalid">
+                        {errors.email.message}
+                      </Form.Control.Feedback>
+                    )}
                   </Form.Group>
 
-                  <Form.Group id="password">
-                    <Form.Label>Password</Form.Label>
+                  {/* Password and password confirmation */}
+                  <Form.Group className="mt-4">
+                    <Form.Label htmlFor="password">Password</Form.Label>
                     <Form.Control
+                      id="password"
                       type="password"
                       placeholder="Enter password"
                       required
+                      {...register('password', {
+                        required: 'Password is required',
+                        minLength: {
+                          value: 8,
+                          message: 'Password must have at least 8 characters',
+                        },
+                      })}
+                      isInvalid={!!errors.password}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.password && errors.password.message}
+                    </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group id="ssn">
-                    <Form.Label>SSN</Form.Label>
+                  <Form.Group className="mt-4">
+                    <Form.Label htmlFor="passwordConfirmation">
+                      Password Confirmation
+                    </Form.Label>
                     <Form.Control
+                      id="passwordConfirmation"
+                      type="password"
+                      placeholder="Confirm password"
+                      required
+                      {...register('passwordConfirmation', {
+                        required: 'Password confirmation is required',
+                        validate: (value) =>
+                          value === watch('password') ||
+                          'Passwords do not match',
+                      })}
+                      isInvalid={!!errors.passwordConfirmation}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.passwordConfirmation &&
+                        errors.passwordConfirmation.message}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+
+                  <Form.Group className="mt-4">
+                    <Form.Label htmlFor="ssn">SSN</Form.Label>
+                    <Form.Control
+                      id="ssn"
                       type="text"
                       placeholder="Enter SSN"
                       required
+                      {...register('ssn', {
+                        required: 'SSN is required',
+                        pattern: {
+                          value: /^[0-9]*$/,
+                          message: 'Only numeric values are allowed',
+                        },
+                      })}
+                      isInvalid={!!errors.ssn}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.ssn && errors.ssn.message}
+                    </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group id="address">
-                    <Form.Label>Address</Form.Label>
+                  <Form.Group className="mt-4">
+                    <Form.Label htmlFor="address">Address</Form.Label>
                     <Form.Control
+                      id="address"
                       type="text"
                       placeholder="Enter address"
                       required
+                      {...register('address', {
+                        required: 'Address is required',
+                      })}
+                      isInvalid={!!errors.address}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.address && errors.address.message}
+                    </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group id="phoneNumber">
-                    <Form.Label>Phone Number</Form.Label>
+                  <Form.Group className="mt-4">
+                    <Form.Label htmlFor="phoneNumber">Phone Number</Form.Label>
                     <Form.Control
+                      id="phoneNumber"
                       type="text"
                       placeholder="Enter phone number"
                       required
+                      {...register('phoneNumber', {
+                        required: 'Phone number is required',
+                      })}
+                      isInvalid={!!errors.phoneNumber}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.phoneNumber && errors.phoneNumber.message}
+                    </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group id="accountType">
-                    <Form.Label>Account Type</Form.Label>
-                    <Form.Control as="select" required>
+                  <Form.Group className="mt-4">
+                    <Form.Label htmlFor="accountType">Account Type</Form.Label>
+                    <Form.Select
+                      id="accountType"
+                      as="select"
+                      required
+                      {...register('accountType', {
+                        required: 'Account type is required',
+                      })}
+                      isInvalid={!!errors.accountType}
+                    >
                       <option value="">Select...</option>
-                      <option value="type1">Type 1</option>
-                      <option value="type2">Type 2</option>
-                      <option value="type3">Type 3</option>
-                    </Form.Control>
+                      <option value="SAVINGS">Savings Account</option>
+                      <option value="CURRENT">Current Account</option>
+                    </Form.Select>
+                    <Form.Control.Feedback type="invalid">
+                      {errors.accountType && errors.accountType.message}
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   <button type="submit" className="btn btn-primary w-100 mt-3">
