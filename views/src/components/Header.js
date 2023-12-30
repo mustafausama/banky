@@ -9,8 +9,7 @@ const Header = () => {
         <div
           className="border rounded border-0 d-flex flex-column justify-content-center align-items-center p-4 py-5"
           style={{
-            background:
-              `linear-gradient(rgba(0,123,255,0.3), rgba(0,123,255,0.3) 100%), url(${banking}) center / cover, #ffffff`,
+            background: `linear-gradient(rgba(0,123,255,0.3), rgba(0,123,255,0.3) 100%), url(${banking}) center / cover, #ffffff`,
             height: '500px',
           }}
         >

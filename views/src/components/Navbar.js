@@ -5,7 +5,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import useAuth from '../hooks/useAuth';
 import { NavLink } from 'react-router-dom';
 
-
 const NavbarComponent = () => {
   const { user } = useAuth();
   return (
@@ -31,14 +30,19 @@ const NavbarComponent = () => {
           </Nav>
           <Nav>
             {!user ? (
-              <NavLink
-                to={'/login'}
-                className={({ isActive }) =>
-                  'nav-link' + (isActive ? ' active' : '')
-                }
-              >
-                Login
-              </NavLink>
+              <div className="d-flex justify-content-between">
+                <NavLink
+                  to={'/login'}
+                  className={({ isActive }) =>
+                    'nav-link' + (isActive ? ' active' : '')
+                  }
+                >
+                  Login
+                </NavLink>
+                <NavLink to={'/register'} className="nav-link">
+                  Register
+                </NavLink>
+              </div>
             ) : (
               <NavLink
                 to={'/logout'}
