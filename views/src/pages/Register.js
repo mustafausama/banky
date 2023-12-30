@@ -184,23 +184,23 @@ const Register = () => {
                   </Form.Group>
 
                   <Form.Group className="mt-4">
-                    <Form.Label htmlFor="ssn">SSN</Form.Label>
+                    <Form.Label htmlFor="SSN">SSN</Form.Label>
                     <Form.Control
-                      id="ssn"
+                      id="SSN"
                       type="text"
                       placeholder="Enter SSN"
                       required
-                      {...register('ssn', {
+                      {...register('SSN', {
                         required: 'SSN is required',
                         pattern: {
                           value: /^[0-9]*$/,
                           message: 'Only numeric values are allowed',
                         },
                       })}
-                      isInvalid={!!errors.ssn}
+                      isInvalid={!!errors.SSN}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {errors.ssn && errors.ssn.message}
+                      {errors.SSN && errors.SSN.message}
                     </Form.Control.Feedback>
                   </Form.Group>
 
