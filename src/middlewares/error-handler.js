@@ -7,7 +7,6 @@ module.exports = (err, req, res, _) => {
   if (err instanceof CustomError) {
     return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
-  // eslint-disable-next-line no-console
   Logger.error(err.message);
 
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
