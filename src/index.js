@@ -1,9 +1,9 @@
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 const app = require('./app');
 const checkEnvVars = require('./config/check-env-vars');
 const MissingEnvError = require('./utils/errors/missing-env-error');
 const Logger = require('./utils/logger');
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 const port = process.env.PORT || 3000;
 
