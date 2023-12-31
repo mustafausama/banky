@@ -35,7 +35,7 @@ const BankAccount = () => {
 
   useEffect(() => {
     axios
-      .get(`/bank-accout/${num}`)
+      .get(`/bank-account/${num}`)
       .then((res) => {
         setAccountDetails(res.data);
       })

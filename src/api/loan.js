@@ -8,6 +8,6 @@ const {
 const router = Router();
 
 router.post('/', loanCreationValidator, createLoan);
-router.get('/:cardNumber', getLoanValidator, getLoan);
+router.get('/:loanNumber', getLoanValidator, getLoan);
 
 module.exports = router;

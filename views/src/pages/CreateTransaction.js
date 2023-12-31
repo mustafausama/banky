@@ -99,12 +99,12 @@ const CreateTransaction = () => {
       <Container>
         <Row className="mb-5">
           <Col md={8} xl={6} className="text-center mx-auto">
-            <h2>Register with Us</h2>
+            <h2>Create a Transaction</h2>
           </Col>
         </Row>
         <Row className="mb-5">
           <Col md={8} xl={6} className="text-center mx-auto">
-            <h3>Why Choose Our Bank?</h3>
+            <h3>Why Trust Our Bank?</h3>
             <p>
               We offer competitive rates, 24/7 customer service, and a
               state-of-the-art mobile banking app. Plus, when you open an

@@ -24,9 +24,9 @@ const BankAccount = () => {
     axios
       .post('/card') // create a new card
       .then((res) => {
-        setResponseData(res.data); 
-        setShowResponse(true); 
-        handleClose(); 
+        setResponseData(res.data);
+        setShowResponse(true);
+        handleClose();
       })
       .catch((err) => {
         // handle the error
@@ -34,7 +34,7 @@ const BankAccount = () => {
   };
 
   useEffect(() => {
-    axios.get(`/bank-accout/${num}`).then((res) => {
+    axios.get(`/bank-account/${num}`).then((res) => {
       setReceivedTransactions(res.data.receivingTransactions);
       setSentTransactions(res.data.sendingTransactions);
       let bankAccount = res.data;

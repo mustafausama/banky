@@ -42,16 +42,16 @@ INSERT INTO public."Bank" (swiftcode, "branchName") VALUES ('NAXWCPHKE3Q', '5th 
 -- Data for Name: BankAccount; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:24:50.799', 1000, '170363269', 'AKQIDA9YUZL', 1, 'SAVINGS');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 10000, '325476952', 'CBTIDBN0I6F', 2, 'CURRENT');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 0, '948966589', 'CBTIDBN0I6F', 7, 'SAVINGS');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 100000, '775613139', 'SQQDEJ3RXDO', 8, 'SAVINGS');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 0, '975055166', 'YFTZZDI3OAB', 9, 'CURRENT');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 4000, '906144384', 'AKQIDA9YUZL', 10, 'SAVINGS');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 2000, '325476952', 'NAXWCPHKE3Q', 3, 'SAVINGS');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 15000, '946085683', 'SQQDEJ3RXDO', 4, 'CURRENT');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 4875, '948966589', 'SQQDEJ3RXDO', 5, 'CURRENT');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 21125, '948966589', 'YFTZZDI3OAB', 6, 'SAVINGS');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountType") VALUES ('2023-12-30 23:24:50.799', 1000, '170363269', 'AKQIDA9YUZL', 'SAVINGS');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountType") VALUES ('2023-12-30 23:32:34.728', 10000, '325476952', 'CBTIDBN0I6F', 'CURRENT');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountType") VALUES ('2023-12-30 23:32:34.728', 0, '948966589', 'CBTIDBN0I6F', 'SAVINGS');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountType") VALUES ('2023-12-30 23:32:34.728', 100000, '775613139', 'SQQDEJ3RXDO', 'SAVINGS');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountType") VALUES ('2023-12-30 23:32:34.728', 0, '975055166', 'YFTZZDI3OAB', 'CURRENT');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountType") VALUES ('2023-12-30 23:32:34.728', 4000, '906144384', 'AKQIDA9YUZL', 'SAVINGS');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountType") VALUES ('2023-12-30 23:32:34.728', 2000, '325476952', 'NAXWCPHKE3Q', 'SAVINGS');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountType") VALUES ('2023-12-30 23:32:34.728', 15000, '946085683', 'SQQDEJ3RXDO', 'CURRENT');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountType") VALUES ('2023-12-30 23:32:34.728', 4875, '948966589', 'SQQDEJ3RXDO', 'CURRENT');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountType") VALUES ('2023-12-30 23:32:34.728', 21125, '948966589', 'YFTZZDI3OAB', 'SAVINGS');
 
 --
 -- TOC entry 3455 (class 0 OID 16728)

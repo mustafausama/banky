@@ -19,8 +19,8 @@ const addBankAccount = async (req, res) => {
 
   const bankAccount = await client.bankAccount.create({
     data: {
-      balance,
-      SSN: SSN,
+      balance: parseFloat(balance),
+      SSN,
       swiftcode,
       accountType: AccountType[accountType],
     },

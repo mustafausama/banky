@@ -7,7 +7,7 @@ const addBankAccountValidator = async (req, res, next) => {
   let errors = {};
 
   if (!balance) errors.balance = 'Balance is required';
-  else if (!validator.isInt(balance))
+  else if (!validator.isFloat(balance))
     errors.balance = 'Balance must be an integer';
   else if (parseInt(balance) < 0) errors.balance = 'Balance must be positive';
 

@@ -3,4 +3,6 @@ const { getNotifications } = require('../controllers/NotificationController');
 
 const router = Router();
 
-router.get('/', getNotifications);
+router.get('/all', getNotifications);
+
+module.exports = router;

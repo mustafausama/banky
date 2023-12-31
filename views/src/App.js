@@ -18,6 +18,7 @@ import Logout from './pages/Logout';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import TransactionDetails from './pages/TransactionDetails';
+import Notification from './components/Notification';
 
 function App() {
   const { statelessInit } = useAuth();
@@ -48,6 +49,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/notifications" element={<Notification page={true} />} />
         </Routes>
         <ToastContainer />
         <Footer />
