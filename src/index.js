@@ -1,5 +1,4 @@
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+require('./config/env-init');
 const app = require('./app');
 const checkEnvVars = require('./config/check-env-vars');
 const MissingEnvError = require('./utils/errors/missing-env-error');

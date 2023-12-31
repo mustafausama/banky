@@ -21,7 +21,11 @@
     "prisma:studio": "prisma studio --schema=src/models/schema.prisma",
     "prisma:push": "prisma db push --schema=src/models/schema.prisma",
     "prisma:format": "prisma format --schema=src/models/schema.prisma",
-    "prisma:validate": "prisma validate --schema=src/models/schema.prisma"
+    "prisma:validate": "prisma validate --schema=src/models/schema.prisma",
+    "prisma:seed": "prisma db seed --schema=src/models/schema.prisma"
+  },
+  "prisma": {
+    "seed": "node src/models/seed.js"
   },
   "author": "",
   "license": "ISC",
