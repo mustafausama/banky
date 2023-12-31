@@ -87,16 +87,14 @@ const Footer = () => {
               <span className="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center bs-icon me-2">
                 <Icon />
               </span>
-              <span>Brand</span>
+              <span>Banky</span>
             </div>
-            <p className="copyright" style={{ color: '#6c757d' }}>
-              Sem eleifend donec molestie, integer quisque orci aliquam.
-            </p>
+            
           </Col>
         </Row>
         <hr />
         <div className="d-flex justify-content-between align-items-center pt-3">
-          <p className="mb-0">Copyright © 2023 Brand</p>
+          <p className="mb-0">Copyright © 2023 Banky</p>
           {/* Social media icons can be added here */}
         </div>
       </Container>

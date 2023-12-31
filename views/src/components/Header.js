@@ -23,12 +23,17 @@ const Header = () => {
                 <h1 className="text-uppercase fw-bold mb-3">
                   Welcome to Banky
                   <br />
-                  fringi dictum, augue purus
+                  
                 </h1>
+                <h3 className="mb-4">
+                  Banking in Your Palm: Your Finances, Your Way
+                </h3>
                 <p className="mb-4">
-                  Etiam a rutrum, mauris lectus aptent convallis. Fusce
-                  vulputate aliquam, sagittis odio metus. Nulla porttitor
-                  vivamus viverra laoreet, aliquam netus.
+                  Empower your financial journey with cutting-edge banking
+                  solutions. Experience seamless transactions, robust security,
+                  and personalized services tailored to meet your unique needs.
+                  Join us on a path to financial success and discover a world of
+                  convenience, innovation, and trust with Banky.
                 </p>
                 <Button
                   variant="primary"

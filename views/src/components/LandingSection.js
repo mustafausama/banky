@@ -35,9 +35,9 @@ const LandingSection = () => {
                 <h4 className="card-title">Transactions</h4>
                 <h6 className="text-muted card-subtitle mb-2">Subtitle</h6>
                 <p className="card-text">
-                  Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                  justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-                  id elit non mi porta gravida at eget metus.
+                  Effortlessly manage your finances with swift payments,
+                  seamless fund transfers, and real-time updates—all at your
+                  fingertips.
                 </p>
               </Card.Body>
               <Card.Footer className="p-4 py-3">
@@ -85,9 +85,9 @@ const LandingSection = () => {
                 <h4 className="card-title">Accounts</h4>
                 <h6 className="text-muted card-subtitle mb-2">Subtitle</h6>
                 <p className="card-text">
-                  Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                  justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-                  id elit non mi porta gravida at eget metus.
+                  Simplify your banking. Swift access, seamless transactions,
+                  real-time updates—all at your fingertips for effortless
+                  account management.
                 </p>
               </Card.Body>
               <Card.Footer className="p-4 py-3">
@@ -131,9 +131,9 @@ const LandingSection = () => {
                 <h4 className="card-title">Cards</h4>
                 <h6 className="text-muted card-subtitle mb-2">Subtitle</h6>
                 <p className="card-text">
-                  Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
-                  justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-                  id elit non mi porta gravida at eget metus.
+                  Simplify your card management. Swift access, seamless
+                  transactions, real-time updates—all at your fingertips for
+                  effortless card control.
                 </p>
               </Card.Body>
               <Card.Footer className="p-4 py-3">

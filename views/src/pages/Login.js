@@ -67,8 +67,8 @@ function Login() {
           <Col md={8} xl={6} className="text-center mx-auto">
             <h2>Join Us</h2>
             <p className="w-lg-50">
-              Curae hendrerit donec commodo hendrerit egestas tempus, turpis
-              facilisis nostra nunc. Vestibulum dui eget ultrices.
+              Your Gateway to Seamless Banking. Effortless Login, Secure
+              Transactions, Your Financial Freedom Starts Here.
             </p>
           </Col>
         </Row>
