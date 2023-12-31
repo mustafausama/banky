@@ -58,12 +58,13 @@ const CreateTransaction = () => {
 
   useEffect(() => {
     if (accountNumber) {
-      setValue('senderAccountNumber', accountNumber);
+      setValue('senderAccountNumber', String(accountNumber));
     }
   }, [accounts, accountNumber, setValue]);
 
   const onSubmit = (data) => {
     if (Object.keys(errors).length > 0) return;
+
     console.log(data);
     axios
       .post('/transaction', data)
@@ -136,7 +137,7 @@ const CreateTransaction = () => {
                   >
                     <option value="">Select an account</option>
                     {accounts.map((account, index) => (
-                      <option key={index} value={account.accountNumber}>
+                      <option key={index} value={String(account.accountNumber)}>
                         {account.accountNumber} (${account.balance.toFixed(2)})
                       </option>
                     ))}

@@ -2,8 +2,14 @@ const validator = require('validator');
 const ValidationError = require('../../utils/errors/validation-error');
 
 const transactionCreationValidator = async (req, res, next) => {
-  const { amount, date, note, senderAccountNumber, recipientAccountNumber } =
-    req.body;
+  const {
+    amount,
+    date,
+    note,
+    swiftcode,
+    senderAccountNumber,
+    recipientAccountNumber,
+  } = req.body;
   let errors = {};
 
   if (!amount) errors.amount = 'Amount is required';
@@ -15,6 +21,10 @@ const transactionCreationValidator = async (req, res, next) => {
 
   if (note && typeof note !== 'string' && !(note instanceof String))
     errors.note = 'Note is invalid';
+
+  if (!swiftcode) errors.swiftcode = 'Swiftcode is required';
+  else if (!validator.isLength(swiftcode, { min: 1 }))
+    errors.swiftcode = 'Swiftcode is invalid';
 
   if (!senderAccountNumber)
     errors.senderAccountNumber = 'Sender account number is required';

@@ -3,15 +3,24 @@ const BadRequestError = require('../utils/errors/bad-request-error');
 const client = new PrismaClient();
 
 const createTransaction = async (req, res) => {
-  const { amount, date, note, senderAccountNumber, recipientAccountNumber } =
-    req.body;
+  const {
+    amount,
+    date,
+    note,
+    swiftcode,
+    senderAccountNumber,
+    recipientAccountNumber,
+  } = req.body;
   const { SSN } = req.user;
 
   const senderAccount = await client.bankAccount.findUnique({
     where: { accountNumber: Number(senderAccountNumber) },
   });
   const recipientAccount = await client.bankAccount.findUnique({
-    where: { accountNumber: Number(recipientAccountNumber) },
+    where: {
+      accountNumber: Number(recipientAccountNumber),
+      swiftcode,
+    },
   });
   if (!recipientAccount) {
     throw new BadRequestError('Recipient account does not exist');
@@ -22,7 +31,7 @@ const createTransaction = async (req, res) => {
   if (senderAccount.SSN !== SSN) {
     throw new BadRequestError('Sender account does not belong to you');
   }
-  if (senderAccount.accountNumber === recipientAccountNumber) {
+  if (String(senderAccount.accountNumber) === String(recipientAccountNumber)) {
     throw new BadRequestError('Cannot transfer to the same account');
   }
   if (senderAccount.balance < amount) {
