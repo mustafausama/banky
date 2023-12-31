@@ -3,12 +3,17 @@ const BadRequestError = require('../utils/errors/bad-request-error');
 const client = new PrismaClient();
 
 const createLoan = async (req, res) => {
-  const { amount, interestRate, startDate, endDate, accountNumber } = req.body;
+  const { amount, startDate, endDate, accountNumber } = req.body;
   const { SSN } = req.user;
+
+  // Calculate the interest rate based on the end date and the start date while giving higher interest rate for shorter loans
+  const durationInYears =
+    (new Date(endDate) - new Date(startDate)) / 1000 / 60 / 60 / 24 / 365;
+  const interestRate = Math.max(5, 30 - durationInYears);
 
   const bankAccount = await client.bankAccount.findUnique({
     where: {
-      accountNumber,
+      accountNumber: Number(accountNumber),
     },
   });
   if (!bankAccount) {
@@ -20,11 +25,11 @@ const createLoan = async (req, res) => {
 
   const newLoan = await client.loan.create({
     data: {
-      amount,
-      interestRate,
-      startDate,
-      endDate,
-      accountNumber,
+      amount: parseFloat(amount),
+      interestRate: interestRate,
+      startDate: new Date(startDate),
+      endDate: new Date(endDate),
+      accountNumber: Number(accountNumber),
     },
   });
 

@@ -59,27 +59,26 @@ INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "acc
 -- Data for Name: ATM; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (1, 30.94441444094134, 26.0270233136464, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (3, 27.40752967056378, 29.71677141341944, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (4, 23.60738758885266, 25.72905193073249, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (2, 22.57334439970264, 30.93136450228213, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (5, 24.80057904193118, 27.16172672290164, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (7, 27.78851524561149, 28.23101580603353, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (6, 23.35477146615899, 31.81103145834266, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (8, 30.46208412870827, 29.18573062913811, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (9, 30.61510969345533, 33.38413230974297, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (10, 24.51484299961557, 27.09667505694397, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (11, 30.39615875840234, 25.94675257861808, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (12, 31.6085444626898, 30.47310333009692, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (13, 31.05026581175527, 28.35126853646209, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (14, 25.80323784438219, 25.77018591805813, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (15, 23.78443793946131, 32.52844432748307, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (16, 25.01212103984133, 28.01763560457604, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (17, 31.2502289513161, 25.57595838465307, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (18, 27.49057938184236, 31.2413955264965, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (19, 23.379369939104, 32.8139462886049, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (20, 23.04350066124042, 32.33786638459392, '');
-INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (21, 5, 87, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (30.94441444094134, 26.0270233136464, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (27.40752967056378, 29.71677141341944, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (23.60738758885266, 25.72905193073249, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (22.57334439970264, 30.93136450228213, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (24.80057904193118, 27.16172672290164, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (27.78851524561149, 28.23101580603353, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (23.35477146615899, 31.81103145834266, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (30.46208412870827, 29.18573062913811, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (30.61510969345533, 33.38413230974297, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (24.51484299961557, 27.09667505694397, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (30.39615875840234, 25.94675257861808, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (31.6085444626898, 30.47310333009692, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (31.05026581175527, 28.35126853646209, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (25.80323784438219, 25.77018591805813, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (23.78443793946131, 32.52844432748307, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (25.01212103984133, 28.01763560457604, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (31.2502289513161, 25.57595838465307, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (27.49057938184236, 31.2413955264965, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (23.379369939104, 32.8139462886049, '');
+INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (23.04350066124042, 32.33786638459392, '');
 
 --
 -- TOC entry 3446 (class 0 OID 16600)
@@ -87,12 +86,12 @@ INSERT INTO public."ATM" ("atmId", latitude, longitude, "bankId") VALUES (21, 5,
 -- Data for Name: Card; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Card" ("cardId", "cardNumber", cvv, "expiryDate", "accountNumber") VALUES (3, '0925 4803 1536 8407', '952', '2023-07-01 00:00:00', 1);
-INSERT INTO public."Card" ("cardId", "cardNumber", cvv, "expiryDate", "accountNumber") VALUES (4, '0847 4597 7812 1767', '688', '2024-01-01 00:00:00', 7);
-INSERT INTO public."Card" ("cardId", "cardNumber", cvv, "expiryDate", "accountNumber") VALUES (5, '1413 4974 4160 4899', '953', '2027-01-01 00:00:00', 3);
-INSERT INTO public."Card" ("cardId", "cardNumber", cvv, "expiryDate", "accountNumber") VALUES (6, '1780 0685 6293 0845', '552', '2026-01-01 00:00:00', 1);
-INSERT INTO public."Card" ("cardId", "cardNumber", cvv, "expiryDate", "accountNumber") VALUES (7, '7621 1767 4763 1581', '792', '2023-01-01 00:00:00', 7);
-INSERT INTO public."Card" ("cardId", "cardNumber", cvv, "expiryDate", "accountNumber") VALUES (8, '4527 2959 2659 2656', '268', '2025-01-01 00:00:00', 9);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('0925 4803 1536 8407', '952', '2023-07-01 00:00:00', 1);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('0847 4597 7812 1767', '688', '2024-01-01 00:00:00', 7);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('1413 4974 4160 4899', '953', '2027-01-01 00:00:00', 3);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('1780 0685 6293 0845', '552', '2026-01-01 00:00:00', 1);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('7621 1767 4763 1581', '792', '2023-01-01 00:00:00', 7);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('4527 2959 2659 2656', '268', '2025-01-01 00:00:00', 9);
 
 --
 -- TOC entry 3448 (class 0 OID 16609)
@@ -100,12 +99,12 @@ INSERT INTO public."Card" ("cardId", "cardNumber", cvv, "expiryDate", "accountNu
 -- Data for Name: Loan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Loan" ("loanId", amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (1, 1000, 12, '2023-01-01 00:00:00', '2023-02-01 00:00:00', 1);
-INSERT INTO public."Loan" ("loanId", amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (2, 50000, 10, '2023-01-01 00:00:00', '2024-01-01 00:00:00', 4);
-INSERT INTO public."Loan" ("loanId", amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (3, 40000, 15, '2023-05-01 00:00:00', '2024-04-01 00:00:00', 2);
-INSERT INTO public."Loan" ("loanId", amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (4, 20000, 20, '2023-10-01 00:00:00', '2023-12-01 00:00:00', 4);
-INSERT INTO public."Loan" ("loanId", amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (5, 100000, 10, '2023-04-01 00:00:00', '2023-11-01 00:00:00', 7);
-INSERT INTO public."Loan" ("loanId", amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (6, 200000, 20, '2023-06-01 00:00:00', '2024-01-01 00:00:00', 3);
+INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (1000, 12, '2023-01-01 00:00:00', '2023-02-01 00:00:00', 1);
+INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (50000, 10, '2023-01-01 00:00:00', '2024-01-01 00:00:00', 4);
+INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (40000, 15, '2023-05-01 00:00:00', '2024-04-01 00:00:00', 2);
+INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (20000, 20, '2023-10-01 00:00:00', '2023-12-01 00:00:00', 4);
+INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (100000, 10, '2023-04-01 00:00:00', '2023-11-01 00:00:00', 7);
+INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (200000, 20, '2023-06-01 00:00:00', '2024-01-01 00:00:00', 3);
 
 
 --
@@ -114,15 +113,15 @@ INSERT INTO public."Loan" ("loanId", amount, "interestRate", "startDate", "endDa
 -- Data for Name: Notification; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Notification" ("notificationId", message, date, "SSN") VALUES (1, 'Account created successfully', '2023-12-30 23:48:09.404', '170363269');
-INSERT INTO public."Notification" ("notificationId", message, date, "SSN") VALUES (2, 'New promotions', '2023-12-30 23:48:09.404', '325476952');
-INSERT INTO public."Notification" ("notificationId", message, date, "SSN") VALUES (3, 'New promotions', '2023-12-30 23:48:09.404', '775613139');
-INSERT INTO public."Notification" ("notificationId", message, date, "SSN") VALUES (4, 'Happy birthday', '2023-12-30 23:48:09.404', '906144384');
-INSERT INTO public."Notification" ("notificationId", message, date, "SSN") VALUES (5, 'Happy new year', '2023-12-30 23:48:09.404', '946085683');
-INSERT INTO public."Notification" ("notificationId", message, date, "SSN") VALUES (6, 'Update your data', '2023-12-30 23:48:09.404', '325476952');
-INSERT INTO public."Notification" ("notificationId", message, date, "SSN") VALUES (7, 'Do not give your data to any one', '2023-12-30 23:48:09.404', '948966589');
-INSERT INTO public."Notification" ("notificationId", message, date, "SSN") VALUES (8, 'Always remember your password and do not write it down', '2023-12-30 23:48:09.404', '975055166');
-INSERT INTO public."Notification" ("notificationId", message, date, "SSN") VALUES (9, 'New promotions', '2023-12-30 23:48:09.404', '325476952');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Account created successfully', '2023-12-30 23:48:09.404', '170363269');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('New promotions', '2023-12-30 23:48:09.404', '325476952');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('New promotions', '2023-12-30 23:48:09.404', '775613139');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Happy birthday', '2023-12-30 23:48:09.404', '906144384');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Happy new year', '2023-12-30 23:48:09.404', '946085683');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Update your data', '2023-12-30 23:48:09.404', '325476952');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Do not give your data to any one', '2023-12-30 23:48:09.404', '948966589');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Always remember your password and do not write it down', '2023-12-30 23:48:09.404', '975055166');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('New promotions', '2023-12-30 23:48:09.404', '325476952');
 
 
 --
@@ -131,15 +130,15 @@ INSERT INTO public."Notification" ("notificationId", message, date, "SSN") VALUE
 -- Data for Name: Review; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Review" ("reviewId", rating, message) VALUES (1, 10, 'The system is very easy to use and great');
-INSERT INTO public."Review" ("reviewId", rating, message) VALUES (2, 8, 'I like the design so much');
-INSERT INTO public."Review" ("reviewId", rating, message) VALUES (3, 9, 'Very comfortable');
-INSERT INTO public."Review" ("reviewId", rating, message) VALUES (4, 6, 'I like it but its sometimes slow');
-INSERT INTO public."Review" ("reviewId", rating, message) VALUES (5, 5, 'Crashes too much');
-INSERT INTO public."Review" ("reviewId", rating, message) VALUES (6, 7, 'Very nice!');
-INSERT INTO public."Review" ("reviewId", rating, message) VALUES (7, 8, 'Great customer support!');
-INSERT INTO public."Review" ("reviewId", rating, message) VALUES (8, 9, 'This bank rulesss');
-INSERT INTO public."Review" ("reviewId", rating, message) VALUES (9, 10, 'I sure do hope its not a bank website for a project cuz that shit too real');
+INSERT INTO public."Review" (rating, message) VALUES (5, 'The system is very easy to use and great');
+INSERT INTO public."Review" (rating, message) VALUES (4, 'I like the design so much');
+INSERT INTO public."Review" (rating, message) VALUES (4, 'Very comfortable');
+INSERT INTO public."Review" (rating, message) VALUES (3, 'I like it but its sometimes slow');
+INSERT INTO public."Review" (rating, message) VALUES (2, 'Crashes too much');
+INSERT INTO public."Review" (rating, message) VALUES (3, 'Very nice!');
+INSERT INTO public."Review" (rating, message) VALUES (4, 'Great customer support!');
+INSERT INTO public."Review" (rating, message) VALUES (4, 'This bank rulesss');
+INSERT INTO public."Review" (rating, message) VALUES (5, 'I sure do hope its not a bank website for a project cuz that shit too real');
 
 
 --
@@ -148,19 +147,18 @@ INSERT INTO public."Review" ("reviewId", rating, message) VALUES (9, 10, 'I sure
 -- Data for Name: Transactions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1, 1000, '2023-12-30 23:42:12.93', 2, 2, '2023-12-30 23:42:12.93', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (2, 10000, '2023-12-30 23:42:12.93', 2, 9, '2023-12-30 23:42:12.93', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (3, 20000, '2023-12-30 23:42:12.93', 8, 2, '2023-12-30 23:42:12.93', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (4, 50000, '2023-12-30 23:42:12.93', 8, 7, '2023-12-30 23:42:12.93', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (5, 1000, '2023-12-30 23:44:47.23', 10, 7, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (6, 1500, '2023-12-30 23:44:47.23', 6, 2, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (7, 2000, '2023-12-30 23:44:47.23', 1, 5, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (8, 2000, '2023-12-30 23:44:47.23', 6, 9, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (9, 1400, '2023-12-30 23:44:47.23', 8, 3, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (10, 500, '2023-12-30 23:44:47.23', 4, 1, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (11, 600, '2023-12-30 23:44:47.23', 8, 9, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" ("transactionId", amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (12, 950, '2023-12-30 23:44:47.23', 3, 4, '2023-12-30 23:44:47.23', '');
-
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1000, '2023-12-30 23:42:12.93', 2, 2, '2023-12-30 23:42:12.93', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (10000, '2023-12-30 23:42:12.93', 2, 9, '2023-12-30 23:42:12.93', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (20000, '2023-12-30 23:42:12.93', 8, 2, '2023-12-30 23:42:12.93', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (50000, '2023-12-30 23:42:12.93', 8, 7, '2023-12-30 23:42:12.93', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1000, '2023-12-30 23:44:47.23', 10, 7, '2023-12-30 23:44:47.23', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1500, '2023-12-30 23:44:47.23', 6, 2, '2023-12-30 23:44:47.23', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (2000, '2023-12-30 23:44:47.23', 1, 5, '2023-12-30 23:44:47.23', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (2000, '2023-12-30 23:44:47.23', 6, 9, '2023-12-30 23:44:47.23', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1400, '2023-12-30 23:44:47.23', 8, 3, '2023-12-30 23:44:47.23', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (500, '2023-12-30 23:44:47.23', 4, 1, '2023-12-30 23:44:47.23', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (600, '2023-12-30 23:44:47.23', 8, 9, '2023-12-30 23:44:47.23', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (950, '2023-12-30 23:44:47.23', 3, 4, '2023-12-30 23:44:47.23', '');
 
 -- Cached Currency Data
 INSERT INTO public."Currency" (name, symbol, exchange) VALUES

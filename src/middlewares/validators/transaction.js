@@ -10,11 +10,11 @@ const transactionCreationValidator = async (req, res, next) => {
   else if (!validator.isFloat(amount) || parseFloat(amount) < 0)
     errors.amount = 'Amount must be a positive float';
 
-  if (!date) errors.date = 'Date is required';
-  else if (!validator.isDate(date) || new Date(date) < new Date())
+  if ((date && !validator.isDate(date)) || new Date(date) < new Date())
     errors.date = 'Date is invalid';
 
-  if (note && !validator.isString(note)) errors.note = 'Note is invalid';
+  if (note && typeof note !== 'string' && !(note instanceof String))
+    errors.note = 'Note is invalid';
 
   if (!senderAccountNumber)
     errors.senderAccountNumber = 'Sender account number is required';

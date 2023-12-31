@@ -8,10 +8,10 @@ const createTransaction = async (req, res) => {
   const { SSN } = req.user;
 
   const senderAccount = await client.bankAccount.findUnique({
-    where: { accountNumber: senderAccountNumber },
+    where: { accountNumber: Number(senderAccountNumber) },
   });
   const recipientAccount = await client.bankAccount.findUnique({
-    where: { accountNumber: recipientAccountNumber },
+    where: { accountNumber: Number(recipientAccountNumber) },
   });
   if (!recipientAccount) {
     throw new BadRequestError('Recipient account does not exist');
@@ -31,22 +31,22 @@ const createTransaction = async (req, res) => {
 
   // Prisma $transaction to create the transaction, update the sender and recipient account, and send notification and return the created transaction entry in the transaction table
 
-  await client.$transaction([
+  const trans = await client.$transaction([
     client.transactions.create({
       data: {
-        amount,
-        date,
+        amount: parseFloat(amount),
+        date: new Date(date || Date.now()),
         note,
-        senderAccountNumber,
-        recipientAccountNumber,
+        senderAccountNumber: Number(senderAccountNumber),
+        recipientAccountNumber: Number(recipientAccountNumber),
       },
     }),
     client.bankAccount.update({
-      where: { accountNumber: senderAccountNumber },
+      where: { accountNumber: Number(senderAccountNumber) },
       data: { balance: parseFloat(senderAccount.balance) - parseFloat(amount) },
     }),
     client.bankAccount.update({
-      where: { accountNumber: recipientAccountNumber },
+      where: { accountNumber: Number(recipientAccountNumber) },
       data: {
         balance: parseFloat(recipientAccount.balance) + parseFloat(amount),
       },
@@ -59,22 +59,52 @@ const createTransaction = async (req, res) => {
     }),
   ]);
 
-  res.status(201);
+  res.status(201).json(trans[0]);
 };
 
 const getTransaction = async (req, res) => {
   const { transactionId } = req.params;
   const { SSN } = req.user;
-  const transaction = await client.transaction.findUnique({
-    where: { transactionId },
+  const transaction = await client.transactions.findUnique({
+    where: { transactionId: Number(transactionId) },
+    select: {
+      amount: true,
+      date: true,
+      note: true,
+      createdAt: true,
+      recipientAccountNumber: true,
+      senderAccountNumber: true,
+      senderBankAccount: {
+        select: {
+          SSN: true,
+          user: {
+            select: {
+              firstName: true,
+              lastName: true,
+            },
+          },
+        },
+      },
+      recipientBankAccount: {
+        select: {
+          SSN: true,
+          user: {
+            select: {
+              firstName: true,
+              lastName: true,
+            },
+          },
+        },
+      },
+    },
   });
 
   if (!transaction) {
     throw new BadRequestError('Transaction does not exist');
   }
   if (
-    transaction.senderAccountNumber !== SSN &&
-    transaction.recipientAccountNumber !== SSN
+    transaction.senderBankAccount.SSN !== SSN &&
+    transaction.recipientBankAccount.SSN !== SSN
   ) {
     throw new BadRequestError('Transaction does not belong to you');
   }

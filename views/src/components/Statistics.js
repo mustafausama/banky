@@ -1,4 +1,4 @@
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
 const Statistics = () => {
@@ -18,32 +18,34 @@ const Statistics = () => {
   }, []);
 
   return (
-    <Row>
-      <Col md={4}>
-        <Card>
-          <Card.Body>
-            <Card.Title>Total Users</Card.Title>
-            <Card.Text>{statistics.totalUsers}</Card.Text>
-          </Card.Body>
-        </Card>
-      </Col>
-      <Col md={4}>
-        <Card>
-          <Card.Body>
-            <Card.Title>Total Transactions</Card.Title>
-            <Card.Text>{statistics.totalTransactions}</Card.Text>
-          </Card.Body>
-        </Card>
-      </Col>
-      <Col md={4}>
-        <Card>
-          <Card.Body>
-            <Card.Title>Total Accounts</Card.Title>
-            <Card.Text>{statistics.totalAccounts}</Card.Text>
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
+    <Container>
+      <Row className="mb-5">
+        <Col md={4}>
+          <Card>
+            <Card.Body>
+              <Card.Title>Total Users</Card.Title>
+              <Card.Text>{statistics.totalUsers}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4}>
+          <Card>
+            <Card.Body>
+              <Card.Title>Total Transactions</Card.Title>
+              <Card.Text>{statistics.totalTransactions}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={4}>
+          <Card>
+            <Card.Body>
+              <Card.Title>Total Accounts</Card.Title>
+              <Card.Text>{statistics.totalAccounts}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

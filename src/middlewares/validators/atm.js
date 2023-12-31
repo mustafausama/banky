@@ -2,7 +2,7 @@ const validator = require('validator');
 const BadRequestError = require('../../utils/errors/bad-request-error');
 
 const nearestATMValidator = async (req, res, next) => {
-  const { latitude, longitude } = req.body;
+  const { latitude, longitude } = req.params;
 
   if (latitude !== undefined && !validator.isFloat(latitude)) {
     throw new BadRequestError('Latitude must be a float');

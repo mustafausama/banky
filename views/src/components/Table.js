@@ -1,12 +1,11 @@
 import React from 'react';
 import { Container, Table } from 'react-bootstrap';
 
-
-
-const MyTable = ({data}) => {
+const MyTable = ({ data }) => {
+  console.log('dasdsadsa', data);
   return (
-      <Container>
-          <h1 style={{ textAlign: 'center' }}>Bank Account Details</h1>
+    <Container>
+      <h1 style={{ textAlign: 'center' }}>Bank Account Details</h1>
       <div className="table-responsive">
         <Table className="table">
           <tbody>

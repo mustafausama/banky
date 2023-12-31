@@ -4,15 +4,15 @@ import banking from '../images/banking.jpg';
 
 const Header = () => {
   return (
-    <section className="py-4 py-xl-5">
-      <Container>
-        <div
-          className="border rounded border-0 d-flex flex-column justify-content-center align-items-center p-4 py-5"
-          style={{
-            background: `linear-gradient(rgba(0,123,255,0.3), rgba(0,123,255,0.3) 100%), url(${banking}) center / cover, #ffffff`,
-            height: '500px',
-          }}
-        >
+    <section className="pb-5">
+      <div
+        className="border border-0 d-flex flex-column justify-content-center align-items-center p-4 py-5"
+        style={{
+          background: `linear-gradient(rgba(0,123,255,0.2), rgba(0,123,255,0.2) 100%), url(${banking}) center / cover, #ffffff`,
+          height: '500px',
+        }}
+      >
+        <Container>
           <Row style={{ color: 'rgb(255,255,255)' }}>
             <Col
               md={10}
@@ -47,8 +47,8 @@ const Header = () => {
               </div>
             </Col>
           </Row>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </section>
   );
 };

@@ -5,10 +5,10 @@ const NotAuthorizedError = require('../utils/errors/not-authorized-error');
 const prisma = new PrismaClient();
 
 const authMiddleware = async (req, res, next) => {
-  const isTokenFlagSet = req.cookies.isTokenAttached === 'true';
+  const isTokenAttached = req.cookies.isTokenAttached;
   const token = req.cookies.token;
 
-  if (!isTokenFlagSet || !token) {
+  if (!isTokenAttached || !token) {
     res.clearCookie('token', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'prod',

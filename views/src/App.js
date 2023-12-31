@@ -14,6 +14,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Review from './pages/Review';
 import Currency from './pages/Currency';
 import CreateLoan from './pages/CreateLoan';
+import Logout from './pages/Logout';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import TransactionDetails from './pages/TransactionDetails';
 
 function App() {
   const { statelessInit } = useAuth();
@@ -30,6 +34,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/account-details/:num" element={<BankAccount />} />
+          <Route
+            path="/transaction-details/:num"
+            element={<TransactionDetails />}
+          />
           <Route path="/create-transaction" element={<CreateTransaction />} />
           <Route path="/create-loan" element={<CreateLoan />} />
           <Route path="/register" element={<Register />} />
@@ -37,6 +45,9 @@ function App() {
           <Route path="/review" element={<Review />} />
           <Route path="/currency" element={<Currency />} />
           <Route path="/nearest-atm" element={<NearestAtm />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <ToastContainer />
         <Footer />

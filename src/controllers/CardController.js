@@ -2,13 +2,37 @@ const { PrismaClient } = require('@prisma/client');
 const BadRequestError = require('../utils/errors/bad-request-error');
 const client = new PrismaClient();
 
+const generateCardNumber = () => {
+  const cardNumber = Math.floor(
+    Math.random() * 9000000000000000 + 1000000000000000
+  );
+  return cardNumber;
+};
+
 const createCard = async (req, res) => {
-  const { cardNumber, cvv, expiryDate, accountNumber } = req.body;
+  const { accountNumber } = req.body;
   const { SSN } = req.user;
+
+  let cardNumber;
+  let existingCard;
+
+  do {
+    cardNumber = generateCardNumber();
+    existingCard = await client.card.findUnique({
+      where: {
+        cardNumber: cardNumber.toString(),
+      },
+    });
+  } while (existingCard);
+
+  const cvv = Math.floor(Math.random() * 900 + 100);
+
+  const expiryDate = new Date();
+  expiryDate.setFullYear(expiryDate.getFullYear() + 5);
 
   const bankAccount = await client.bankAccount.findUnique({
     where: {
-      accountNumber,
+      accountNumber: parseInt(accountNumber),
     },
   });
   if (!bankAccount) {
@@ -18,21 +42,12 @@ const createCard = async (req, res) => {
     throw new BadRequestError('Bank account does not belong to user');
   }
 
-  const card = await client.card.findUnique({
-    where: {
-      cardNumber,
-    },
-  });
-  if (card) {
-    throw new BadRequestError('Card already exists');
-  }
-
   const newCard = await client.card.create({
     data: {
-      cardNumber,
-      cvv,
+      cardNumber: cardNumber.toString(),
+      cvv: cvv.toString(),
       expiryDate,
-      accountNumber,
+      accountNumber: parseInt(accountNumber),
     },
   });
   res.status(201).json(newCard);

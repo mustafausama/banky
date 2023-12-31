@@ -36,7 +36,7 @@ const showAccountDetails = async (req, res) => {
   const { num: accountNumber } = req.params;
   const bankAccount = await client.bankAccount.findUnique({
     where: {
-      accountNumber,
+      accountNumber: Number(accountNumber),
     },
     select: {
       accountNumber: true,
@@ -47,6 +47,7 @@ const showAccountDetails = async (req, res) => {
       bank: {
         select: {
           branchName: true,
+          swiftcode: true,
         },
       },
       sendingTransactions: {
@@ -55,6 +56,24 @@ const showAccountDetails = async (req, res) => {
           date: true,
           createdAt: true,
           amount: true,
+          recipientBankAccount: {
+            select: {
+              accountNumber: true,
+              bank: {
+                select: {
+                  branchName: true,
+                  swiftcode: true,
+                },
+              },
+              user: {
+                select: {
+                  firstName: true,
+                  lastName: true,
+                  SSN: true,
+                },
+              },
+            },
+          },
         },
         take: 10,
       },
@@ -64,6 +83,24 @@ const showAccountDetails = async (req, res) => {
           date: true,
           createdAt: true,
           amount: true,
+          senderBankAccount: {
+            select: {
+              accountNumber: true,
+              bank: {
+                select: {
+                  branchName: true,
+                  swiftcode: true,
+                },
+              },
+              user: {
+                select: {
+                  firstName: true,
+                  lastName: true,
+                  SSN: true,
+                },
+              },
+            },
+          },
         },
         take: 10,
       },
@@ -72,6 +109,15 @@ const showAccountDetails = async (req, res) => {
           cardId: true,
           cardNumber: true,
           expiryDate: true,
+        },
+      },
+      loans: {
+        select: {
+          loanId: true,
+          amount: true,
+          interestRate: true,
+          startDate: true,
+          endDate: true,
         },
       },
     },

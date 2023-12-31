@@ -36,6 +36,7 @@ jobs:
           echo "CLIENT_URL=\"${{ secrets.CLIENT_URL }}\"" >> .env
           echo "DATABASE_URL=\"${{ secrets.DATABASE_URL }}\"" >> .env
           echo "REACT_APP_BASE_URL=\"${{ secrets.REACT_APP_BASE_URL }}\"" >> views/.env
+          echo "REACT_APP_GOOGLE_API_KEY=\"${{ secrets.REACT_APP_GOOGLE_API_KEY }}\"" >> views/.env
 
       - name: Build views
         run: BUILD_PATH='../views-build' npm run --prefix ./views build

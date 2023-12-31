@@ -2,16 +2,12 @@ const validator = require('validator');
 const ValidationError = require('../../utils/errors/validation-error');
 
 const loanCreationValidator = async (req, res, next) => {
-  const { amount, interestRate, startDate, endDate, accountNumber } = req.body;
+  const { amount, startDate, endDate, accountNumber } = req.body;
   let errors = {};
 
   if (!amount) errors.amount = 'Amount is required';
   else if (!validator.isFloat(amount) || parseFloat(amount) < 0)
     errors.amount = 'Amount must be a positive float';
-
-  if (!interestRate) errors.interestRate = 'Interest rate is required';
-  else if (!validator.isFloat(interestRate) || parseFloat(interestRate) < 0)
-    errors.interestRate = 'Interest rate must be a positive float';
 
   if (!startDate) errors.startDate = 'Start date is required';
   else if (!validator.isDate(startDate) || new Date(startDate) < new Date())

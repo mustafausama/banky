@@ -2,19 +2,19 @@ const { PrismaClient } = require('@prisma/client');
 const client = new PrismaClient();
 
 const getNearestATMs = async (req, res) => {
-  const { latitude, longitude } = req.body;
+  const { latitude, longitude } = req.query;
 
   let query = {};
   if (latitude !== undefined && longitude !== undefined) {
     query = client.$queryRaw`
     SELECT *, 
-           (6371 * acos(cos(radians(${latitude})) 
+           (6371 * acos(cos(radians(${parseFloat(latitude)})) 
            * cos(radians(latitude)) 
            * cos(radians(longitude) 
-           - radians(${longitude})) 
-           + sin(radians(${latitude})) 
+           - radians(${parseFloat(longitude)})) 
+           + sin(radians(${parseFloat(latitude)})) 
            * sin(radians(latitude)))) AS distance 
-    FROM "ATM" 
+    FROM public."ATM" 
     ORDER BY distance ASC
   `;
   } else {

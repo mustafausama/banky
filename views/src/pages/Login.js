@@ -18,14 +18,15 @@ function Login() {
   const navigate = useNavigate();
 
   const redirectToastId = useRef(null);
-  const { user } = useAuth();
+  const { user, statelessInit } = useAuth();
   useEffect(() => {
     if (user) {
-      navigate('/');
+      statelessInit();
+      navigate('/dashboard');
       if (!redirectToastId.current)
         redirectToastId.current = toast.info('You are already logged in');
     }
-  }, [user, navigate]);
+  }, [user, statelessInit, navigate]);
 
   useEffect(() => {
     console.log(errors);
@@ -37,6 +38,7 @@ function Login() {
       .post('/auth/login', data)
       .then(() => {
         toast.success('Login success');
+        statelessInit();
         navigate('/');
       })
       .catch((err) => {

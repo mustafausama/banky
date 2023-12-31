@@ -14,7 +14,8 @@ const changeUser = async (req, res) => {
   if (lastName) updateData.lastName = lastName;
   if (email) {
     const emailExists = await client.user.findUnique({ where: { email } });
-    if (emailExists) throw new BadRequestError('Email already exists');
+    if (emailExists && emailExists.SSN !== SSN)
+      throw new BadRequestError('Email already exists');
     updateData.email = email;
   }
   if (password) updateData.password = await hashPassword(password);
@@ -27,6 +28,7 @@ const changeUser = async (req, res) => {
 
 const showUserInfo = async (req, res) => {
   const { includeAccounts } = req.query;
+
   const info = await client.user.findUnique({
     where: {
       SSN: req.user.SSN,

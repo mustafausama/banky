@@ -10,23 +10,43 @@ const NavbarComponent = () => {
   return (
     <Navbar bg="dark" data-bs-theme="dark" collapseOnSelect expand="lg">
       <Container>
-        <Navbar.Brand href="#home">Banky</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <NavLink
+            to={'/'}
+            className={({ isActive }) =>
+              'nav-link' + (isActive ? ' active' : '')
+            }
+          >
+            Banky
+          </NavLink>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+            <NavDropdown title="Features" id="collapsible-nav-dropdown">
+              <NavDropdown.Item>
+                <Nav.Link to={'/nearest-atm'} as={NavLink}>
+                  ATMs
+                </Nav.Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item>
+                <Nav.Link to={'/currency'} as={NavLink}>
+                  Currency Exchange
+                </Nav.Link>
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item>
+                <Nav.Link to={'/'} as={NavLink}>
+                  About Us
+                </Nav.Link>
               </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link to={'/review'} as={NavLink}>
+              Reviews
+            </Nav.Link>
+            <Nav.Link to={'/dashboard'} as={NavLink}>
+              Dashboard
+            </Nav.Link>
           </Nav>
           <Nav>
             {!user ? (

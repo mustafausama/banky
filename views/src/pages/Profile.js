@@ -7,45 +7,50 @@ import { useForm } from 'react-hook-form';
 import axios from '../utils/api';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useAuth from '../hooks/useAuth';
 
-const Register = () => {
+const Profile = () => {
   const {
     register,
     handleSubmit,
     watch,
     setError,
     formState: { errors },
+    setValue,
   } = useForm();
+
   const navigate = useNavigate();
 
   const redirectToastId = useRef(null);
   const { user, statelessInit } = useAuth();
   useEffect(() => {
-    if (user) {
-      statelessInit();
-      navigate('/dashboard');
-      if (!redirectToastId.current)
-        redirectToastId.current = toast.info('You are already logged in');
+    if (user !== null) {
+      if (user === '') {
+        statelessInit();
+        navigate('/login');
+        if (!redirectToastId.current)
+          redirectToastId.current = toast.info('You are not logged in');
+      }
     }
   }, [user, statelessInit, navigate]);
 
+  const [userInfo, setUserInfo] = useState(null);
+
   const onSubmit = (data) => {
-    const toastStatus = toast.loading('Registering...');
+    const toastStatus = toast.loading('Updating...');
 
     if (Object.keys(errors).length > 0) return;
     axios
-      .post('/auth/register', data)
+      .put('/user', data)
       .then(() => {
         toast.update(toastStatus, {
           type: 'success',
           isLoading: false,
           autoClose: 2500,
-          render: 'Registration successful!',
-          closeButton: true,
+          render: 'Update successful!',
         });
-        navigate('/login');
+        navigate('/dashboard');
       })
       .catch((err) => {
         const { errors } = err.response.data;
@@ -79,23 +84,42 @@ const Register = () => {
         }
       });
   };
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get('/user/user-info');
+        setUserInfo(response.data);
+        setValue('firstName', response.data.firstName);
+        setValue('lastName', response.data.lastName);
+        setValue('email', response.data.email);
+        setValue('address', response.data.address);
+        setValue('phoneNumber', response.data.phoneNumber);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchData();
+  }, [setValue]);
+
+  if (!userInfo) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="position-relative py-4 py-xl-5">
       <Container>
         <Row className="mb-5">
           <Col md={8} xl={6} className="text-center mx-auto">
-            <h2>Register with Us</h2>
+            <h2>Edit your profile</h2>
           </Col>
         </Row>
         <Row className="mb-5">
           <Col md={8} xl={6} className="text-center mx-auto">
-            <h3>Why Choose Our Bank?</h3>
+            <h3>Here you can edit your profile</h3>
             <p>
-              We offer competitive rates, 24/7 customer service, and a
-              state-of-the-art mobile banking app. Plus, when you open an
-              account, you'll get a free checkbook and debit card. Join us today
-              and experience banking at its best!
+              Please edit your profile wisely. Any false information or misuse
+              to our services is going to be treated as crime.
             </p>
           </Col>
         </Row>
@@ -125,14 +149,21 @@ const Register = () => {
                           type="text"
                           placeholder="Enter first name"
                           name="firstName"
-                          {...register('firstName', {
-                            required: 'First name is required',
-                          })}
+                          {...register('firstName')}
                           isInvalid={!!errors.firstName}
                         />
                         <Form.Control.Feedback type="invalid">
                           {errors.firstName && errors.firstName.message}
                         </Form.Control.Feedback>
+                        <Form.Text
+                          className="text-muted text-decoration-underline mx-1 cursor-pointer"
+                          role="button"
+                          onClick={() =>
+                            setValue('firstName', userInfo.firstName)
+                          }
+                        >
+                          <small>Reset value</small>
+                        </Form.Text>
                       </Form.Group>
                     </Col>
                     <Col>
@@ -151,6 +182,15 @@ const Register = () => {
                         <Form.Control.Feedback type="invalid">
                           {errors.lastName && errors.lastName.message}
                         </Form.Control.Feedback>
+                        <Form.Text
+                          className="text-muted text-decoration-underline mx-1 cursor-pointer"
+                          role="button"
+                          onClick={() =>
+                            setValue('lastName', userInfo.lastName)
+                          }
+                        >
+                          <small>Reset value</small>
+                        </Form.Text>
                       </Form.Group>
                     </Col>
                   </Row>
@@ -174,9 +214,15 @@ const Register = () => {
                     <Form.Control.Feedback type="invalid">
                       {errors.email && errors.email.message}
                     </Form.Control.Feedback>
+                    <Form.Text
+                      className="text-muted text-decoration-underline mx-1 cursor-pointer"
+                      role="button"
+                      onClick={() => setValue('email', userInfo.email)}
+                    >
+                      <small>Reset value</small>
+                    </Form.Text>
                   </Form.Group>
 
-                  {/* Password and password confirmation */}
                   <Form.Group className="mt-4">
                     <Form.Label htmlFor="password">Password</Form.Label>
                     <Form.Control
@@ -185,7 +231,6 @@ const Register = () => {
                       placeholder="Enter password"
                       required
                       {...register('password', {
-                        required: 'Password is required',
                         minLength: {
                           value: 8,
                           message: 'Password must have at least 8 characters',
@@ -208,7 +253,6 @@ const Register = () => {
                       placeholder="Confirm password"
                       required
                       {...register('passwordConfirmation', {
-                        required: 'Password confirmation is required',
                         validate: (value) =>
                           value === watch('password') ||
                           'Passwords do not match',
@@ -218,27 +262,6 @@ const Register = () => {
                     <Form.Control.Feedback type="invalid">
                       {errors.passwordConfirmation &&
                         errors.passwordConfirmation.message}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-
-                  <Form.Group className="mt-4">
-                    <Form.Label htmlFor="SSN">SSN</Form.Label>
-                    <Form.Control
-                      id="SSN"
-                      type="text"
-                      placeholder="Enter SSN"
-                      required
-                      {...register('SSN', {
-                        required: 'SSN is required',
-                        pattern: {
-                          value: /^[0-9]*$/,
-                          message: 'Only numeric values are allowed',
-                        },
-                      })}
-                      isInvalid={!!errors.SSN}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.SSN && errors.SSN.message}
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -257,6 +280,13 @@ const Register = () => {
                     <Form.Control.Feedback type="invalid">
                       {errors.address && errors.address.message}
                     </Form.Control.Feedback>
+                    <Form.Text
+                      className="text-muted text-decoration-underline mx-1 cursor-pointer"
+                      role="button"
+                      onClick={() => setValue('address', userInfo.address)}
+                    >
+                      <small>Reset value</small>
+                    </Form.Text>
                   </Form.Group>
 
                   <Form.Group className="mt-4">
@@ -273,17 +303,26 @@ const Register = () => {
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.phoneNumber && errors.phoneNumber.message}
-                    </Form.Control.Feedback>
+                    </Form.Control.Feedback>{' '}
+                    <Form.Text
+                      className="text-muted text-decoration-underline mx-1 cursor-pointer"
+                      role="button"
+                      onClick={() =>
+                        setValue('phoneNumber', userInfo.phoneNumber)
+                      }
+                    >
+                      <small>Reset value</small>
+                    </Form.Text>
                   </Form.Group>
 
                   <button
                     type="submit"
                     className="btn btn-primary w-100 mt-3 mb-3"
                   >
-                    Register
+                    Update
                   </button>
                   <p className="text-muted">
-                    Already have an account? <Link to="/login">Login</Link>
+                    Change your mind? <Link to="/dashboard">Dashboard</Link>
                   </p>
                 </Form>
               </Card.Body>
@@ -295,4 +334,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Profile;

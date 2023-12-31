@@ -47,7 +47,7 @@ const changeUserValidator = async (req, res, next) => {
 };
 
 const showUserInfoValidator = async (req, res, next) => {
-  const { includeAccounts } = req.query;
+  const { includeAccounts } = req.params;
   if (includeAccounts && !validator.isBoolean(includeAccounts)) {
     throw new BadRequestError('Invalid query parameter');
   }
