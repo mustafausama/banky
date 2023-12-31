@@ -63,7 +63,11 @@ const createTransaction = async (req, res) => {
     client.notification.create({
       data: {
         SSN: recipientAccount.SSN,
-        message: `You will receive ${amount} from ${senderAccountNumber} on ${date}`,
+        message: `You ${
+          date ? 'will receive' : 'received'
+        } ${amount} from ${senderAccountNumber} ${
+          date ? `on ${new Date(date).toDateString()}` : 'now'
+        }`,
       },
     }),
   ]);

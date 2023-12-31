@@ -129,8 +129,8 @@ INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Update your da
 INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Do not give your data to any one', '2023-12-30 23:48:09.404', '948966589');
 INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Always remember your password and do not write it down', '2023-12-30 23:48:09.404', '975055166');
 INSERT INTO public."Notification" (message, date, "SSN") VALUES ('New promotions', '2023-12-30 23:48:09.404', '325476952');
-INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 3123 from 6 on undefined', '2023-12-31 09:06:40.185', '948966589');
-INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 3123 from 6 on undefined', '2023-12-31 09:07:00.778', '948966589');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You Received 3123 from 6 now', '2023-12-31 09:06:40.185', '948966589');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You Received 3123 from 6 now', '2023-12-31 09:07:00.778', '948966589');
 INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 543 from 6 on 2024-01-06', '2023-12-31 09:09:28', '948966589');
 INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 543 from 6 on 2024-01-06', '2023-12-31 09:10:16.214', '948966589');
 INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 543 from 6 on 2024-01-06', '2023-12-31 09:10:42.212', '948966589');
