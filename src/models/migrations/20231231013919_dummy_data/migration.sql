@@ -14,13 +14,13 @@
 -- Data for Name: User; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('946085683', 'Mohamed', 'Kareem', 'mohamed234@gmail.com', '', 'El Nasr Rd., Aswan, 21532, Egypt', '01893161371');
-INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('906144384', 'Sameh', 'El Alfy', 'alfy2345@gmail.com', '', 'El Gomhoreya St., Cairo, 11511, Egypt', '01176823972');
-INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('975055166', 'Mike', 'Kraven', 'kraven@gmail.com', '', 'Ahmed Orabi St., Mansoura, 12556, Egypt', '01215406554');
-INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('170363269', 'Peter', 'Parker', 'parker@gmail.com', '', 'El Bahr El Aazam St., Giza, 35516, Egypt', '01308462043');
-INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('948966589', 'Norman', 'Osborne', 'norman8@gmail.com', '', 'El Nasr Rd., Aswan, 21532, Egypt', '1711907875');
-INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('325476952', 'Mary', 'Jane', 'jane2453@gmail.com', '', 'El Nasr Rd., Aswan, 21532, Egypt', '01711907875');
-INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('775613139', 'Ahmad', 'Lasheen', 'lasheen@gmail.com', '', 'Ahmed Orabi St., Giza, 12556, Egypt', '01978757940');
+INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('946085683', 'Mohamed', 'Kareem', 'mohamed234@gmail.com', '$2b$10$YDRlT1aGO2TkFxPpS60e0edeftyB.RvoMXvFmUUY1zkrRyK8UlItK', 'El Nasr Rd., Aswan, 21532, Egypt', '01893161371');
+INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('906144384', 'Sameh', 'El Alfy', 'alfy2345@gmail.com', '$2b$10$fHSzBP8eKeHWB9g2CEqCJ.lJ7W0NnCwhzil29uSlW0PUpLgpIf.A.', 'El Gomhoreya St., Cairo, 11511, Egypt', '01176823972');
+INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('975055166', 'Mike', 'Kraven', 'kraven@gmail.com', '$2b$10$579zKzN.60e8iCwCwwUTmOmj9Hv6wJopermh6yHKOVldl6Xj5i9/6', 'Ahmed Orabi St., Mansoura, 12556, Egypt', '01215406554');
+INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('170363269', 'Peter', 'Parker', 'parker@gmail.com', '$2b$10$0.sE/yijk9Dj93vL79ETCuC1eOLYiPy3B/K6satTrcfdjUici/LMW', 'El Bahr El Aazam St., Giza, 35516, Egypt', '01308462043');
+INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('325476952', 'Mary', 'Jane', 'jane2453@gmail.com', '$2b$10$eJu9FO/N6b4qyaARlWJUd.twq1xhDJXUrBO4o2N1SRV9X3OUiP2uS', 'El Nasr Rd., Aswan, 21532, Egypt', '01711907875');
+INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('775613139', 'Ahmad', 'Lasheen', 'lasheen@gmail.com', '$2b$10$8CsTtQrs5/20P9VOaNXOPuGE659DazYxHVWJuqYDtU1uvds1ARw.u', 'Ahmed Orabi St., Giza, 12556, Egypt', '01978757940');
+INSERT INTO public."User" ("SSN", "firstName", "lastName", email, password, address, "phoneNumber") VALUES ('948966589', 'Norman', 'Osborne', 'norman8@gmail.com', '$2b$10$eoxGxdTXODkies/MlEe8nOg84joGE8OiA0kOj0TbUJkGzISgZD3De', 'El Nasr Rd., Aswan, 21532, Egypt', '1711907875');
 
 --
 -- TOC entry 3443 (class 0 OID 16585)
@@ -50,8 +50,8 @@ INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "acc
 INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 4000, '906144384', 'AKQIDA9YUZL', 10, 'SAVINGS');
 INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 2000, '325476952', 'NAXWCPHKE3Q', 3, 'SAVINGS');
 INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 15000, '946085683', 'SQQDEJ3RXDO', 4, 'CURRENT');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 2000, '948966589', 'SQQDEJ3RXDO', 5, 'CURRENT');
-INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 24000, '948966589', 'YFTZZDI3OAB', 6, 'SAVINGS');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 4875, '948966589', 'SQQDEJ3RXDO', 5, 'CURRENT');
+INSERT INTO public."BankAccount" ("openingDate", balance, "SSN", swiftcode, "accountNumber", "accountType") VALUES ('2023-12-30 23:32:34.728', 21125, '948966589', 'YFTZZDI3OAB', 6, 'SAVINGS');
 
 --
 -- TOC entry 3455 (class 0 OID 16728)
@@ -86,12 +86,16 @@ INSERT INTO public."ATM" (latitude, longitude, "bankId") VALUES (23.043500661240
 -- Data for Name: Card; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('0925 4803 1536 8407', '952', '2023-07-01 00:00:00', 1);
-INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('0847 4597 7812 1767', '688', '2024-01-01 00:00:00', 7);
-INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('1413 4974 4160 4899', '953', '2027-01-01 00:00:00', 3);
-INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('1780 0685 6293 0845', '552', '2026-01-01 00:00:00', 1);
-INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('7621 1767 4763 1581', '792', '2023-01-01 00:00:00', 7);
-INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('4527 2959 2659 2656', '268', '2025-01-01 00:00:00', 9);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('0925480315368407', '952', '2023-07-01 00:00:00', 1);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('0847459778121767', '688', '2024-01-01 00:00:00', 7);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('1413497441604899', '953', '2027-01-01 00:00:00', 3);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('1780068562930845', '552', '2026-01-01 00:00:00', 1);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('7621176747631581', '792', '2023-01-01 00:00:00', 7);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('4527295926592656', '268', '2025-01-01 00:00:00', 9);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('5707237391589401', '376', '2028-12-31 10:42:43.1', 5);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('6291944380750697', '439', '2028-12-31 10:44:04.041', 7);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('4067514211071177', '411', '2028-12-31 10:45:07.161', 7);
+INSERT INTO public."Card" ("cardNumber", cvv, "expiryDate", "accountNumber") VALUES ('6679032422816849', '801', '2028-12-31 10:49:05.627', 5);
 
 --
 -- TOC entry 3448 (class 0 OID 16609)
@@ -105,6 +109,9 @@ INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "acco
 INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (20000, 20, '2023-10-01 00:00:00', '2023-12-01 00:00:00', 4);
 INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (100000, 10, '2023-04-01 00:00:00', '2023-11-01 00:00:00', 7);
 INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (200000, 20, '2023-06-01 00:00:00', '2024-01-01 00:00:00', 3);
+INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (13213, 5, '2024-01-04 00:00:00', '2065-10-31 00:00:00', 7);
+INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (3213213, 30, '2024-01-01 00:00:00', '2024-01-01 00:00:00', 7);
+INSERT INTO public."Loan" (amount, "interestRate", "startDate", "endDate", "accountNumber") VALUES (434234, 26.00547945205479, '2024-01-03 00:00:00', '2027-12-31 00:00:00', 7);
 
 
 --
@@ -122,6 +129,12 @@ INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Update your da
 INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Do not give your data to any one', '2023-12-30 23:48:09.404', '948966589');
 INSERT INTO public."Notification" (message, date, "SSN") VALUES ('Always remember your password and do not write it down', '2023-12-30 23:48:09.404', '975055166');
 INSERT INTO public."Notification" (message, date, "SSN") VALUES ('New promotions', '2023-12-30 23:48:09.404', '325476952');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 3123 from 6 on undefined', '2023-12-31 09:06:40.185', '948966589');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 3123 from 6 on undefined', '2023-12-31 09:07:00.778', '948966589');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 543 from 6 on 2024-01-06', '2023-12-31 09:09:28', '948966589');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 543 from 6 on 2024-01-06', '2023-12-31 09:10:16.214', '948966589');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 543 from 6 on 2024-01-06', '2023-12-31 09:10:42.212', '948966589');
+INSERT INTO public."Notification" (message, date, "SSN") VALUES ('You will receive 5000 from 5 on 2024-01-05', '2023-12-31 09:12:36.193', '948966589');
 
 
 --
@@ -147,68 +160,73 @@ INSERT INTO public."Review" (rating, message) VALUES (5, 'I sure do hope its not
 -- Data for Name: Transactions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1000, '2023-12-30 23:42:12.93', 2, 2, '2023-12-30 23:42:12.93', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (10000, '2023-12-30 23:42:12.93', 2, 9, '2023-12-30 23:42:12.93', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (20000, '2023-12-30 23:42:12.93', 8, 2, '2023-12-30 23:42:12.93', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (50000, '2023-12-30 23:42:12.93', 8, 7, '2023-12-30 23:42:12.93', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1000, '2023-12-30 23:44:47.23', 10, 7, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1500, '2023-12-30 23:44:47.23', 6, 2, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (2000, '2023-12-30 23:44:47.23', 1, 5, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (2000, '2023-12-30 23:44:47.23', 6, 9, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1400, '2023-12-30 23:44:47.23', 8, 3, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (500, '2023-12-30 23:44:47.23', 4, 1, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (600, '2023-12-30 23:44:47.23', 8, 9, '2023-12-30 23:44:47.23', '');
-INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (950, '2023-12-30 23:44:47.23', 3, 4, '2023-12-30 23:44:47.23', '');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1000, '2024-01-10 23:42:12.93', 2, 2, '2023-12-30 23:42:12.93', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (10000, '2024-01-10 23:42:12.93', 2, 9, '2023-12-30 23:42:12.93', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (20000, '2024-01-10 23:42:12.93', 8, 2, '2023-12-30 23:42:12.93', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (50000, '2023-12-21 23:42:12.93', 8, 7, '2023-12-15 23:44:47.23', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1000, '2024-01-10 23:42:12.93', 10, 7, '2023-12-30 23:44:47.23', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1500, '2024-01-10 23:42:12.93', 6, 2, '2023-12-30 23:44:47.23', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (2000, '2024-01-10 23:42:12.93', 1, 5, '2023-12-30 23:44:47.23', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (2000, '2023-12-21 23:42:12.93', 6, 9, '2023-12-15 23:44:47.23', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (1400, '2024-01-10 23:42:12.93', 8, 3, '2023-12-30 23:44:47.23', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (500, '2024-01-10 23:42:12.93', 4, 1, '2023-12-30 23:44:47.23', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (600, '2024-01-10 23:42:12.93', 8, 9, '2023-12-30 23:44:47.23', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (950, '2023-12-30 23:44:47.23', 3, 4, '2023-12-30 23:44:47.23', 'Living Expenses');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (3123, '2023-12-31 09:06:40.182', 6, 5, '2023-12-31 09:06:40.185', 'dfds');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (3123, '2023-12-31 09:07:00.776', 6, 5, '2023-12-31 09:07:00.778', 'dfds');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (543, '2024-01-06 00:00:00', 6, 5, '2023-12-31 09:09:28', 'rewrewr');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (543, '2024-01-06 00:00:00', 6, 5, '2023-12-31 09:10:16.214', 'rewrewr');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (543, '2024-01-06 00:00:00', 6, 5, '2023-12-31 09:10:42.212', 'rewrewr');
+INSERT INTO public."Transactions" (amount, date, "senderAccountNumber", "recipientAccountNumber", "createdAt", note) VALUES (5000, '2024-01-05 00:00:00', 5, 6, '2023-12-31 09:12:36.193', 'rwerwerewr');
 
 -- Cached Currency Data
-INSERT INTO public."Currency" (name, symbol, exchange) VALUES
-('Argentine Peso', 'ARS', 95.25),
-('Australian Dollar', 'AUD', 1.3),
-('Azerbaijani Manat', 'AZN', 1.7),
-('Bangladeshi Taka', 'BDT', 84.95),
-('Bulgarian Lev', 'BGN', 1.65),
-('Brazilian Real', 'BRL', 5.25),
-('Canadian Dollar', 'CAD', 1.25),
-('Swiss Franc', 'CHF', 0.91),
-('Chilean Peso', 'CLP', 779.5),
-('Chinese Yuan', 'CNY', 6.45),
-('Colombian Peso', 'COP', 3761),
-('Czech Koruna', 'CZK', 21.87),
-('Danish Krone', 'DKK', 6.12),
-('Egyptian Pound', 'EGP', 15.67),
-('Euro', 'EUR', 0.85),
-('British Pound', 'GBP', 0.72),
-('Hong Kong Dollar', 'HKD', 7.77),
-('Croatian Kuna', 'HRK', 6.36),
-('Hungarian Forint', 'HUF', 295.36),
-('Indonesian Rupiah', 'IDR', 14255),
-('Israeli New Shekel', 'ILS', 3.25),
-('Indian Rupee', 'INR', 74.57),
-('Icelandic Krona', 'ISK', 125),
-('Japanese Yen', 'JPY', 110.47),
-('Kenyan Shilling', 'KES', 109.2),
-('South Korean Won', 'KRW', 1176.5),
-('Kazakhstani Tenge', 'KZT', 425),
-('Moroccan Dirham', 'MAD', 9),
-('Macedonian Denar', 'MKD', 52),
-('Mexican Peso', 'MXN', 20.23),
-('Malaysian Ringgit', 'MYR', 4.15),
-('Nigerian Naira', 'NGN', 411.5),
-('Norwegian Krone', 'NOK', 8.7),
-('New Zealand Dollar', 'NZD', 1.42),
-('Peruvian Sol', 'PEN', 4.08),
-('Philippine Peso', 'PHP', 50.35),
-('Pakistani Rupee', 'PKR', 159.5),
-('Polish Zloty', 'PLN', 3.9),
-('Romanian Leu', 'RON', 4.18),
-('Serbian Dinar', 'RSD', 99),
-('Russian Ruble', 'RUB', 72.93),
-('Saudi Riyal', 'SAR', 3.75),
-('Swedish Krona', 'SEK', 8.58),
-('Singapore Dollar', 'SGD', 1.34),
-('Thai Baht', 'THB', 31.28),
-('Turkish Lira', 'TRY', 8.63),
-('Ukrainian Hryvnia', 'UAH', 27.8),
-('US Dollar', 'USD', 1),
-('Vietnamese Dong', 'VND', 23000),
-('South African Rand', 'ZAR', 14.87);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Argentine Peso', 'ARS', 95.25);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Australian Dollar', 'AUD', 1.3);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Azerbaijani Manat', 'AZN', 1.7);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Bangladeshi Taka', 'BDT', 84.95);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Bulgarian Lev', 'BGN', 1.65);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Brazilian Real', 'BRL', 5.25);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Canadian Dollar', 'CAD', 1.25);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Swiss Franc', 'CHF', 0.91);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Chilean Peso', 'CLP', 779.5);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Chinese Yuan', 'CNY', 6.45);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Colombian Peso', 'COP', 3761);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Czech Koruna', 'CZK', 21.87);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Danish Krone', 'DKK', 6.12);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Egyptian Pound', 'EGP', 15.67);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Euro', 'EUR', 0.85);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('British Pound', 'GBP', 0.72);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Hong Kong Dollar', 'HKD', 7.77);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Croatian Kuna', 'HRK', 6.36);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Hungarian Forint', 'HUF', 295.36);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Indonesian Rupiah', 'IDR', 14255);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Israeli New Shekel', 'ILS', 3.25);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Indian Rupee', 'INR', 74.57);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Icelandic Krona', 'ISK', 125);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Japanese Yen', 'JPY', 110.47);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Kenyan Shilling', 'KES', 109.2);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('South Korean Won', 'KRW', 1176.5);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Kazakhstani Tenge', 'KZT', 425);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Moroccan Dirham', 'MAD', 9);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Macedonian Denar', 'MKD', 52);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Mexican Peso', 'MXN', 20.23);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Malaysian Ringgit', 'MYR', 4.15);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Nigerian Naira', 'NGN', 411.5);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Norwegian Krone', 'NOK', 8.7);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('New Zealand Dollar', 'NZD', 1.42);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Peruvian Sol', 'PEN', 4.08);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Philippine Peso', 'PHP', 50.35);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Pakistani Rupee', 'PKR', 159.5);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Polish Zloty', 'PLN', 3.9);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Romanian Leu', 'RON', 4.18);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Serbian Dinar', 'RSD', 99);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Russian Ruble', 'RUB', 72.93);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Saudi Riyal', 'SAR', 3.75);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Swedish Krona', 'SEK', 8.58);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Singapore Dollar', 'SGD', 1.34);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Thai Baht', 'THB', 31.28);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Turkish Lira', 'TRY', 8.63);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Ukrainian Hryvnia', 'UAH', 27.8);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('US Dollar', 'USD', 1);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('Vietnamese Dong', 'VND', 23000);
+INSERT INTO public."Currency" (name, symbol, exchange) VALUES ('South African Rand', 'ZAR', 14.87);
