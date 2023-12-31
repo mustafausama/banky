@@ -6,6 +6,9 @@ import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import axios from '../utils/api';
 import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import useAuth from '../hooks/useAuth';
 
 const Register = () => {
   const {
@@ -14,24 +17,61 @@ const Register = () => {
     watch,
     setError,
     formState: { errors },
-    clearErrors,
   } = useForm();
+  const navigate = useNavigate();
+
+  const redirectToastId = useRef(null);
+  const { user } = useAuth();
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+      if (!redirectToastId.current)
+        redirectToastId.current = toast.info('You are already logged in');
+    }
+  }, [user, navigate]);
 
   const onSubmit = (data) => {
+    const toastStatus = toast.loading('Registering...');
+
     if (Object.keys(errors).length > 0) return;
     axios
       .post('/auth/register', data)
-      .then(() => {})
+      .then(() => {
+        toast.update(toastStatus, {
+          type: 'success',
+          isLoading: false,
+          autoClose: 2500,
+          render: 'Registration successful!',
+        });
+        navigate('/login');
+      })
       .catch((err) => {
         const { errors } = err.response.data;
+        if (!errors || !Array.isArray(errors) || !errors.length)
+          return console.log(err);
         const { message, fields } = errors[0];
-        if (message) toast.error(message);
+        if (message)
+          toast.update(toastStatus, {
+            type: 'error',
+            isLoading: false,
+            autoClose: 5000,
+            closeButton: true,
+            render: message,
+          });
+        else
+          toast.update(toastStatus, {
+            type: 'error',
+            isLoading: false,
+            autoClose: 5000,
+            closeButton: true,
+            render: 'Unknown server error',
+          });
         if (fields) {
-          clearErrors();
           fields.forEach(({ field, message }) => {
             if (!errors[field])
               setError(field, {
                 message,
+                type: 'server',
               });
           });
         }
@@ -106,11 +146,9 @@ const Register = () => {
                           })}
                           isInvalid={!!errors.lastName}
                         />
-                        {errors.lastName && (
-                          <Form.Control.Feedback type="invalid">
-                            {errors.lastName.message}
-                          </Form.Control.Feedback>
-                        )}
+                        <Form.Control.Feedback type="invalid">
+                          {errors.lastName && errors.lastName.message}
+                        </Form.Control.Feedback>
                       </Form.Group>
                     </Col>
                   </Row>
@@ -131,11 +169,9 @@ const Register = () => {
                       })}
                       isInvalid={!!errors.email}
                     />
-                    {errors.email && (
-                      <Form.Control.Feedback type="invalid">
-                        {errors.email.message}
-                      </Form.Control.Feedback>
-                    )}
+                    <Form.Control.Feedback type="invalid">
+                      {errors.email && errors.email.message}
+                    </Form.Control.Feedback>
                   </Form.Group>
 
                   {/* Password and password confirmation */}
@@ -238,7 +274,7 @@ const Register = () => {
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group className="mt-4">
+                  {/* <Form.Group className="mt-4">
                     <Form.Label htmlFor="accountType">Account Type</Form.Label>
                     <Form.Select
                       id="accountType"
@@ -256,11 +292,17 @@ const Register = () => {
                     <Form.Control.Feedback type="invalid">
                       {errors.accountType && errors.accountType.message}
                     </Form.Control.Feedback>
-                  </Form.Group>
+                  </Form.Group> */}
 
-                  <button type="submit" className="btn btn-primary w-100 mt-3">
+                  <button
+                    type="submit"
+                    className="btn btn-primary w-100 mt-3 mb-3"
+                  >
                     Register
                   </button>
+                  <p className="text-muted">
+                    Already have an account? <Link to="/login">Login</Link>
+                  </p>
                 </Form>
               </Card.Body>
             </Card>

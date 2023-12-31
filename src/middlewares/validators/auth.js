@@ -51,8 +51,6 @@ const loginValidator = async (req, res, next) => {
     errors.email = 'Email is invalid';
 
   if (!req.body.password) errors.password = 'Password is required';
-  else if (!validator.isStrongPassword(req.body.password))
-    errors.password = 'Password is invalid';
 
   if (Object.keys(errors).length > 0)
     throw new ValidationError(

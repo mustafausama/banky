@@ -1,9 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import axios from '../utils/api';
 import { toast } from 'react-toastify';
+import useAuth from '../hooks/useAuth';
 
 function Login() {
   const {
@@ -14,17 +15,37 @@ function Login() {
     clearErrors,
   } = useForm();
 
+  const navigate = useNavigate();
+
+  const redirectToastId = useRef(null);
+  const { user } = useAuth();
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+      if (!redirectToastId.current)
+        redirectToastId.current = toast.info('You are already logged in');
+    }
+  }, [user, navigate]);
+
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
+
   const onSubmit = (data) => {
-    if ( errors && Object.keys(errors).length > 0) return;
+    if (errors && Object.keys(errors).length > 0) return;
     axios
       .post('/auth/login', data)
       .then(() => {
         toast.success('Login success');
+        navigate('/');
       })
       .catch((err) => {
         const { errors } = err.response.data;
+        if (!errors || !Array.isArray(errors) || !errors.length)
+          return console.log(err);
         const { message, fields } = errors[0];
         if (message) toast.error(message);
+        else toast.error('Unknown server error');
         if (fields) {
           clearErrors();
           fields.forEach(({ field, message }) => {
@@ -65,7 +86,11 @@ function Login() {
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
                   </svg>
                 </div>
-                <Form className="text-center" noValidate onSubmit={handleSubmit(onSubmit)}>
+                <Form
+                  className="text-center"
+                  noValidate
+                  onSubmit={handleSubmit(onSubmit)}
+                >
                   <Form.Group className="mb-3">
                     <Form.Control
                       type="email"
@@ -107,12 +132,12 @@ function Login() {
                       variant="primary"
                       className="d-block w-100"
                       type="submit"
+                      onClick={() => console.log(errors)}
                     >
                       Login
                     </Button>
                   </div>
-                  <p className="text-muted">Forgot your password?</p>
-                  <p>
+                  <p className="text-muted">
                     Don't have an account? <Link to="/register">Register</Link>
                   </p>
                 </Form>
