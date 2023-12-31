@@ -62,6 +62,7 @@ jobs:
 
       - name: Run the server
         run: |
+          ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm install -g npm@6"
           ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm ci"
           ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm run prisma:migrate"
           ssh root@${{ secrets.DIGITAL_OCEAN_IP }} "cd /app && npm run prisma:seed"
